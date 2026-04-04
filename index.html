@@ -10,192 +10,98 @@
 <style>
 
 /* ═══════════════════════════════════════════
-   CINEMATIC INTRO OVERLAY
+   AD-STYLE VIDEO POPUP
    ═══════════════════════════════════════════ */
 
-/* Lock scroll while intro is active */
-body.intro-active {
-  overflow: hidden;
-}
+/* NO scroll lock — page is fully usable */
 
 #intro-overlay {
   position: fixed;
-  inset: 0;
+  /* Centered horizontally and vertically */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
   z-index: 10000;
+  /* Desktop: comfortably large */
+  width: min(560px, calc(100vw - 40px));
   background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(33,150,243,0.3);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  /* Stays on top of everything */
+  cursor: default;
+  animation: adSlideIn 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
 }
 
-/* The video element — hidden until user clicks */
+@keyframes adSlideIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* The video element — always visible inside the popup */
 #intro-video {
-  position: absolute;
-  inset: 0;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-  pointer-events: none;
-}
-
-#intro-overlay.playing #intro-video {
   opacity: 1;
+  pointer-events: none;
+  background: #000;
 }
 
-/* Grain texture on intro */
+/* Thin blue accent line along top */
 #intro-overlay::before {
   content: '';
   position: absolute;
-  inset: 0;
-  z-index: 2;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #2196F3, #00d4ff);
+  z-index: 10;
   pointer-events: none;
 }
 
-/* Scanlines on intro */
-#intro-overlay::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  background: repeating-linear-gradient(
-    0deg, transparent, transparent 2px,
-    rgba(0,0,0,0.09) 2px, rgba(0,0,0,0.09) 3px
-  );
-  pointer-events: none;
-}
+/* No scanlines or grain needed for small popup */
+#intro-overlay::after { display: none; }
 
-/* Corner brackets */
-.intro-corner {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  z-index: 4;
-  pointer-events: none;
-  transition: opacity 0.4s;
-}
-.intro-corner.tl { top: 32px; left: 32px; border-top: 1.5px solid rgba(33,150,243,0.6); border-left: 1.5px solid rgba(33,150,243,0.6); }
-.intro-corner.tr { top: 32px; right: 32px; border-top: 1.5px solid rgba(33,150,243,0.6); border-right: 1.5px solid rgba(33,150,243,0.6); }
-.intro-corner.bl { bottom: 32px; left: 32px; border-bottom: 1.5px solid rgba(33,150,243,0.6); border-left: 1.5px solid rgba(33,150,243,0.6); }
-.intro-corner.br { bottom: 32px; right: 32px; border-bottom: 1.5px solid rgba(33,150,243,0.6); border-right: 1.5px solid rgba(33,150,243,0.6); }
+/* Corner brackets — hidden for ad style */
+.intro-corner { display: none; }
 
-/* Top-left logo mark */
+/* Logo bar at bottom of video */
 .intro-logo {
   position: absolute;
-  top: 36px;
-  left: 56px;
+  bottom: 44px;
+  left: 14px;
   z-index: 5;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   letter-spacing: 0.08em;
   color: #fff;
   pointer-events: none;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.8);
   opacity: 0;
-  animation: ifu 1s 0.4s forwards;
+  animation: ifu 0.6s 0.4s forwards;
 }
 .intro-logo span { color: #2196F3; }
 
-/* Top-right patent tag */
-.intro-patent {
-  position: absolute;
-  top: 42px;
-  right: 56px;
-  z-index: 5;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  pointer-events: none;
-  opacity: 0;
-  animation: ifu 1s 0.6s forwards;
-}
+/* Patent tag — hidden in ad mode */
+.intro-patent { display: none; }
 
-/* IDLE STATE — before click */
-.intro-idle {
-  position: relative;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  text-align: center;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
+/* IDLE STATE — hidden entirely; video autoplays immediately */
+.intro-idle { display: none; }
 
-#intro-overlay.playing .intro-idle {
-  opacity: 0;
-  transform: scale(0.92);
-  pointer-events: none;
-}
+/* Big wordmark — hidden */
+.intro-wordmark { display: none; }
 
-/* Big wordmark */
-.intro-wordmark {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(5rem, 14vw, 13rem);
-  line-height: 0.85;
-  letter-spacing: 0.02em;
-  color: #fff;
-  opacity: 0;
-  animation: ifu 1s 0.2s forwards;
-  user-select: none;
-}
-.intro-wordmark .iw-blue { color: #2196F3; }
-.intro-wordmark .iw-line2 { display: block; font-size: clamp(2.5rem, 6vw, 5.5rem); color: rgba(255,255,255,0.5); letter-spacing: 0.06em; margin-top: 8px; }
+/* Tagline — hidden */
+.intro-tagline { display: none; }
 
-/* Tagline */
-.intro-tagline {
-  font-family: 'Space Mono', monospace;
-  font-size: clamp(0.65rem, 1.2vw, 0.82rem);
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  margin-top: 24px;
-  margin-bottom: 56px;
-  opacity: 0;
-  animation: ifu 1s 0.5s forwards;
-}
+/* Play button — hidden (autoplay) */
+.intro-enter-btn { display: none; }
 
-/* THE CLICK TARGET — pulsing ring button */
-.intro-enter-btn {
-  position: relative;
-  width: 120px;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 8px;
-  opacity: 0;
-  animation: ifu 1s 0.8s forwards;
-  cursor: pointer;
-}
-
-/* Outer pulsing ring */
-.intro-enter-btn::before {
-  content: '';
-  position: absolute;
-  inset: -12px;
-  border-radius: 50%;
-  border: 1px solid rgba(33,150,243,0.3);
-  animation: outerPulse 2.2s ease-in-out infinite;
-}
-/* Inner solid ring */
-.intro-enter-btn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1.5px solid rgba(33,150,243,0.7);
-  animation: innerPulse 2.2s ease-in-out infinite;
-}
+/* Outer/inner pulse rings — not needed */
+.intro-enter-btn::before,
+.intro-enter-btn::after { display: none; }
 
 @keyframes outerPulse {
   0%, 100% { transform: scale(1); opacity: 0.4; }
@@ -240,26 +146,36 @@ body.intro-active {
   color: rgba(255,255,255,0.8);
 }
 
-/* Skip link */
+/* X Close button — top-right of popup */
 .intro-skip {
   position: absolute;
-  bottom: 36px;
-  right: 56px;
-  z-index: 5;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.2);
+  top: 8px;
+  right: 8px;
+  z-index: 20;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.65);
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: color 0.2s;
-  opacity: 0;
-  animation: ifu 1s 1.2s forwards;
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  line-height: 1;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
   user-select: none;
+  opacity: 0;
+  animation: ifu 0.4s 1s forwards;
 }
-.intro-skip:hover { color: rgba(255,255,255,0.6); }
+.intro-skip:hover {
+  background: rgba(33,150,243,0.85);
+  color: #fff;
+  border-color: #2196F3;
+}
 
-/* Video progress bar at bottom */
+/* Video progress bar at bottom of popup */
 .intro-progress {
   position: absolute;
   bottom: 0;
@@ -269,54 +185,50 @@ body.intro-active {
   background: #2196F3;
   z-index: 6;
   transition: width 0.1s linear;
-  box-shadow: 0 0 8px rgba(33,150,243,0.6);
+  box-shadow: 0 0 6px rgba(33,150,243,0.7);
 }
 
-/* Playing state — show skip more prominently */
+/* Playing state — skip always shown */
 #intro-overlay.playing .intro-skip {
-  color: rgba(255,255,255,0.4);
-}
-#intro-overlay.playing .intro-skip:hover {
-  color: rgba(255,255,255,0.9);
+  color: rgba(255,255,255,0.85);
 }
 
 /* DISMISS ANIMATION */
 #intro-overlay.dismissing {
-  animation: introDismiss 0.9s cubic-bezier(0.7,0,1,1) forwards;
+  animation: introDismiss 0.4s ease-in forwards;
 }
 @keyframes introDismiss {
-  0% { opacity: 1; transform: scale(1); }
-  30% { opacity: 1; transform: scale(1.03); }
-  100% { opacity: 0; transform: scale(1.06); }
+  0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
 }
 
-/* Intro fade-up helper */
+/* Fade-up helper */
 @keyframes ifu {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
 }
 
-/* Bottom HUD row */
+/* Bottom HUD row — repurposed as ad label bar */
 .intro-hud-row {
-  position: absolute;
-  bottom: 36px;
-  left: 56px;
-  z-index: 5;
+  background: rgba(0,0,0,0.6);
+  padding: 7px 14px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  z-index: 5;
   opacity: 0;
-  animation: ifu 1s 1s forwards;
+  animation: ifu 0.5s 0.6s forwards;
+  flex-shrink: 0;
 }
 .intro-hud-item {
   font-family: 'Space Mono', monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.16em;
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.35);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 .intro-hud-item::before {
   content: '';
@@ -674,148 +586,141 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,.06); p
 .text-blue { color: var(--blue-bright); }
 .text-fire { color: var(--fire); }
 
-/* ── Phone: video fills correctly in both orientations ── */
+/* Dim backdrop behind the popup */
+#intro-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(2px);
+  animation: backdropIn 0.4s ease forwards;
+  transition: opacity 0.4s;
+}
+#intro-backdrop.dismissing {
+  animation: backdropOut 0.4s ease forwards;
+}
+@keyframes backdropIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes backdropOut { from { opacity: 1; } to { opacity: 0; } }
+
+/* ── RESPONSIVE: Popup ── */
+@media (max-width: 600px) {
+  #intro-overlay {
+    width: calc(100vw - 32px);
+    border-radius: 8px;
+  }
+  .intro-hud-item { font-size: 0.5rem; letter-spacing: 0.1em; }
+}
+
+/* ── RESPONSIVE: Navbar ── */
 @media (max-width: 768px) {
-
-  #intro-video {
-    object-position: center center;
-  }
-
-  /* Scale down wordmark so it fits a phone screen */
-  .intro-wordmark {
-    font-size: clamp(3rem, 18vw, 6rem);
-    line-height: 0.88;
-  }
-  .intro-wordmark .iw-line2 {
-    font-size: clamp(1.2rem, 4.5vw, 2.5rem);
-    margin-top: 6px;
-  }
-
-  /* Tighter tagline */
-  .intro-tagline {
-    font-size: 0.58rem;
-    letter-spacing: 0.14em;
-    margin-top: 16px;
-    margin-bottom: 36px;
-    padding: 0 12px;
-  }
-
-  /* Smaller corner brackets so they don't crowd */
-  .intro-corner {
-    width: 28px;
-    height: 28px;
-  }
-  .intro-corner.tl,
-  .intro-corner.tr { top: 16px; }
-  .intro-corner.bl,
-  .intro-corner.br { bottom: 16px; }
-  .intro-corner.tl,
-  .intro-corner.bl { left: 16px; }
-  .intro-corner.tr,
-  .intro-corner.br { right: 16px; }
-
-  /* Logo & patent tag */
-  .intro-logo  { top: 20px; left: 52px; font-size: 1.1rem; }
-  .intro-patent { top: 26px; right: 52px; font-size: 0.52rem; }
-
-  /* Bottom HUD & skip */
-  .intro-hud-row { left: 16px; bottom: 20px; gap: 12px; flex-wrap: wrap; }
-  .intro-hud-item { font-size: 0.52rem; }
-  .intro-skip { right: 16px; bottom: 20px; }
+  .nav-links { display: none; }
+  #navbar { padding: 0 16px; }
+  .nav-brand { font-size: 1.4rem; }
 }
 
-/* ── Landscape phone (short viewport) ── */
-@media (max-height: 500px) {
-
-  /* Video: shift focus to centre so faces/action stay visible */
-  #intro-video {
-    object-position: center 30%;
-  }
-
-  .intro-wordmark {
-    font-size: clamp(2rem, 10vh, 4rem);
-  }
-  .intro-wordmark .iw-line2 {
-    font-size: clamp(0.9rem, 3vh, 1.6rem);
-    margin-top: 4px;
-  }
-
-  .intro-tagline {
-    font-size: 0.52rem;
-    margin-top: 10px;
-    margin-bottom: 20px;
-  }
-
-  /* Shrink the enter button so it doesn't overflow */
-  .intro-enter-btn {
-    width: 80px;
-    height: 80px;
-  }
-  .intro-play-icon {
-    border-width: 11px 0 11px 20px;
-  }
-
-  /* Hide hud row in tiny landscape to free space */
-  .intro-hud-row { display: none; }
+/* ── RESPONSIVE: Hero ── */
+@media (max-width: 768px) {
+  #hero { min-height: 100svh; }
+  .hero-content { padding: 100px 20px 60px; }
+  .hero-title { font-size: clamp(3rem, 12vw, 5rem); line-height: 0.9; }
+  .hero-sub { font-size: 0.9rem; }
+  .hero-badges { flex-wrap: wrap; gap: 8px; }
+  .hero-cta-row { flex-direction: column; gap: 12px; }
+  .hero-cta-row a, .hero-cta-row button { width: 100%; text-align: center; }
 }
+
+/* ── RESPONSIVE: Sections padding ── */
+@media (max-width: 768px) {
+  section { padding: 60px 20px !important; }
+  .section-title { font-size: clamp(2.2rem, 9vw, 3.5rem); }
+  .section-body { font-size: 0.95rem; }
+}
+
+/* ── RESPONSIVE: Ticker ── */
+@media (max-width: 768px) {
+  .ticker-item { font-size: 0.65rem; padding: 0 20px; }
+}
+
+/* ── RESPONSIVE: Product / Feature cards ── */
+@media (max-width: 768px) {
+  .features-grid { grid-template-columns: 1fr; }
+  .feature-card { padding: 28px 20px; }
+  .feature-icon { font-size: 2rem; }
+}
+
+/* ── RESPONSIVE: Benefits grid ── */
+@media (max-width: 768px) {
+  .benefits-grid { grid-template-columns: 1fr; }
+}
+
+/* ── RESPONSIVE: Table / comparison ── */
+@media (max-width: 768px) {
+  .comparison-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { font-size: 0.8rem; min-width: 500px; }
+  th, td { padding: 10px 12px; }
+}
+
+/* ── RESPONSIVE: Market stats ── */
+@media (max-width: 768px) {
+  .market-big { font-size: 3rem; }
+  .market-big span { font-size: 1.8rem; }
+}
+
+/* ── RESPONSIVE: CTA section ── */
+@media (max-width: 768px) {
+  .cta-title { font-size: clamp(2.5rem, 10vw, 4rem); }
+  .cta-sub { font-size: 0.92rem; }
+  .cta-contacts { flex-direction: column; align-items: center; gap: 12px; }
+}
+
+/* ── RESPONSIVE: Footer ── */
+@media (max-width: 768px) {
+  footer { flex-direction: column; align-items: flex-start; padding: 32px 20px; }
+  .footer-info { text-align: left; }
+}
+
+/* ── RESPONSIVE: ROI calculator ── */
+@media (max-width: 768px) {
+  .calc-grid { grid-template-columns: 1fr !important; }
+  .calc-results { margin-top: 24px; }
+}
+
+/* ── RESPONSIVE: Block grid animation ── */
+@media (max-width: 768px) {
+  #blockGrid { grid-template-columns: repeat(5, 1fr) !important; gap: 4px !important; }
+  .block { width: auto !important; height: 32px !important; }
+}
+
+/* ── GLOBAL READABILITY HELPERS ── */
+img { max-width: 100%; height: auto; }
+* { box-sizing: border-box; }
+
 </style>
 </head>
-<body class="intro-active">
+<body>
+
+<!-- Dim backdrop -->
+<div id="intro-backdrop"></div>
 
 <!-- ═══════════════════════════════════════════
      CINEMATIC INTRO OVERLAY
      ═══════════════════════════════════════════ -->
 <div id="intro-overlay">
 
-  <!-- Your video file — set src to your actual file path -->
-  <!--
-    HOW TO USE YOUR OWN VIDEO:
-    Place your video file in the same folder as index.html (e.g. "intro.mp4")
-    Then update the src below to: src="intro.mp4"
-    Supported formats: .mp4 (recommended), .webm, .mov
-  -->
-  <video id="intro-video" playsinline webkit-playsinline>
+  <!-- Video autoplays muted (browser requirement for autoplay) -->
+  <video id="intro-video" playsinline webkit-playsinline autoplay muted loop>
     <source src="video/intro.mp4" type="video/mp4"/>
     <source src="video/intro.webm" type="video/webm"/>
   </video>
 
-  <!-- Corner brackets -->
-  <div class="intro-corner tl"></div>
-  <div class="intro-corner tr"></div>
-  <div class="intro-corner bl"></div>
-  <div class="intro-corner br"></div>
+  <!-- X close button -->
+  <div class="intro-skip" id="introSkip" title="Close">&#x2715;</div>
 
-  <!-- Top logo -->
-  <div class="intro-logo">STEEL<span>-ONE</span></div>
-
-  <!-- Top right patent -->
-  <div class="intro-patent">Utility &amp; Design Patents Pending</div>
-
-  <!-- IDLE content — what you see before clicking -->
-  <div class="intro-idle">
-    <div class="intro-wordmark">
-      STEEL<span class="iw-blue">-ONE</span>
-      <span class="iw-line2">Metal Block Construction System</span>
-    </div>
-    <div class="intro-line"></div>
-    <div class="intro-tagline">Build Faster &nbsp;·&nbsp; Build Steel &nbsp;·&nbsp; Non-Combustible &nbsp;·&nbsp; Patent Pending</div>
-
-    <!-- THE BIG CLICK TARGET -->
-    <div class="intro-enter-btn" id="introEnterBtn">
-      <div class="intro-play-icon"></div>
-      <div class="intro-enter-label">Click to Enter</div>
-    </div>
-  </div>
-
-  <!-- Bottom HUD row -->
+  <!-- Bottom label bar -->
   <div class="intro-hud-row">
-    <div class="intro-hud-item">Concord Pacific, Corp</div>
-    <div class="intro-hud-item">Roman Alexander, CEO</div>
-    <div class="intro-hud-item">1000pacific@gmail.com</div>
+    <div class="intro-hud-item">STEEL-ONE &nbsp;·&nbsp; Concord Pacific, Corp</div>
+    <div class="intro-hud-item" style="color:rgba(255,255,255,0.2);font-size:0.5rem;">AD</div>
   </div>
-
-  <!-- Skip / close -->
-  <div class="intro-skip" id="introSkip">Skip →</div>
 
   <!-- Video progress bar -->
   <div class="intro-progress" id="introProgress"></div>
@@ -832,7 +737,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,.06); p
 <!-- MOBILE CTA BAR -->
 <div class="mobile-cta-bar">
   <a href="tel:3109995015" class="mobile-cta-btn mobile-cta-call">📞 Call Now</a>
-  <a href="mailto:1000pacific@gmail.com" class="mobile-cta-btn mobile-cta-email">✉ Email Us</a>
+  <a href="/cdn-cgi/l/email-protection#f8c9c8c8c888999b919e919bb89f95999194d69b9795" class="mobile-cta-btn mobile-cta-email">✉ Email Us</a>
 </div>
 
 <!-- AI CHATBOT BUBBLE -->
@@ -880,13 +785,12 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,.06); p
 
   <div class="hero-content">
     <div class="hero-eyebrow">Utility &amp; Design Patents Pending</div>
-    <h1 class="hero-title">
+    <h2 class="hero-title">
       BUILD<br/>
-      <span class="accent">FASTER.</span><br/>
-      BUILD <span class="fire-accent">STEEL.</span>
-    </h1>
-    <p class="hero-sub">STEEL-ONE is a precision-engineered metal block system that reduces home construction from years to weeks — with two people, no skilled trades required. Non-combustible. Patent pending.</p>
-    <div class="hero-actions">
+      <span class="accent">FASTER</span><br/>
+      BUILD <span class="fire-accent">STEEL</span>
+    </h2>
+     <div class="hero-actions">
       <a href="#scrolly" class="btn-primary">Explore the System</a>
       <a href="#fire" class="btn-fire">🔥 Fire Resistance</a>
     </div>
@@ -919,18 +823,13 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,.06); p
   <div class="gallery-label">What Steel-Built Homes Look Like</div>
   <div style="overflow:hidden;">
     <div class="gallery-strip">
-      <div class="gallery-photo"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=80&fit=crop" alt=""/><div class="gallery-photo-label">Contemporary Single Family</div></div>
-      <div class="gallery-photo"><img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=700&q=80&fit=crop" alt=""/><div class="gallery-photo-label">Open Plan Architecture</div></div>
-      <div class="gallery-photo"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=80&fit=crop" alt=""/><div class="gallery-photo-label">Luxury Modern Finish</div></div>
-      <div class="gallery-photo"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80&fit=crop" alt=""/><div class="gallery-photo-label">Modular Steel Design</div></div>
-      <div class="gallery-photo"><img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?w=700&q=80&fit=crop" alt=""/><div class="gallery-photo-label">Multi-Unit Residential</div></div>
-      <div class="gallery-photo"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=700&q=80&fit=crop" alt=""/><div class="gallery-photo-label">Interior Living Space</div></div>
-      <div class="gallery-photo"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=80&fit=crop" alt=""/></div>
-      <div class="gallery-photo"><img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=700&q=80&fit=crop" alt=""/></div>
-      <div class="gallery-photo"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=80&fit=crop" alt=""/></div>
-      <div class="gallery-photo"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80&fit=crop" alt=""/></div>
-      <div class="gallery-photo"><img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?w=700&q=80&fit=crop" alt=""/></div>
-      <div class="gallery-photo"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=700&q=80&fit=crop" alt=""/></div>
+      <div class="gallery-photo"><img src="img/1.png" alt=""/><div class="gallery-photo-label">Contemporary Single Family</div></div>
+      <div class="gallery-photo"><img src="img/2.png" alt=""/><div class="gallery-photo-label">Open Plan Architecture</div></div>
+      <div class="gallery-photo"><img src="img/3.png" alt=""/><div class="gallery-photo-label">Luxury Modern Finish</div></div>
+      <div class="gallery-photo"><img src="img/4.png" alt=""/><div class="gallery-photo-label">Modular Steel Design</div></div>
+      <div class="gallery-photo"><img src="img/5.png" alt=""/><div class="gallery-photo-label">Multi-Unit Residential</div></div>
+      <div class="gallery-photo"><img src="img/6.png" alt=""/><div class="gallery-photo-label">Interior Living Space</div></div>
+      <div class="gallery-photo"><img src="img/7.png" alt=""/></div>
     </div>
   </div>
 </div>
@@ -991,7 +890,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,.06); p
             <div class="block-explode-left">
               <span class="section-label">The Product</span>
               <h2>The Metal Block.<br/><span class="text-blue">Everything Pre-Built In.</span></h2>
-              <p class="section-body" style="margin-top:12px;">Each STEEL-ONE block arrives from the factory with plumbing channels, electrical conduit, and insulation pre-integrated — so assembly is as simple as stacking and locking.</p>
+              <p class="section-body" style="margin-top:12px;">STEEL-ONE block arrives from the factory with plumbing channels, electrical conduit, and insulation pre-integrated — so assembly is as simple as stacking and locking.</p>
               <div class="block-feature-list">
                 <div class="block-feature"><div class="bf-icon">🔩</div><div class="bf-text"><strong>Precision Recycled Steel Shell</strong><span>High-strength, fully recyclable, low embodied carbon.</span></div></div>
                 <div class="block-feature"><div class="bf-icon">💧</div><div class="bf-text"><strong>Integrated Plumbing Channels</strong><span>Factory-routed — no plumber required on site.</span></div></div>
@@ -1169,9 +1068,9 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,.06); p
     <div class="section-label reveal" style="display:inline-block;margin-bottom:20px;">Join the Revolution</div>
     <h2 class="cta-title reveal reveal-d1">THE FUTURE<br/><span>OF HOME</span><br/>IS STEEL.</h2>
     <p class="cta-sub reveal reveal-d2">We're not just building blocks — we're building a platform for a sustainable, scalable, fire-safe future in residential construction.</p>
-    <div class="reveal reveal-d3"><a href="mailto:1000pacific@gmail.com" class="btn-primary" style="font-size:1rem;padding:18px 40px;">Request a Meeting</a></div>
+    <div class="reveal reveal-d3"><a href="/cdn-cgi/l/email-protection#c6f7f6f6f6b6a7a5afa0afa586a1aba7afaae8a5a9ab" class="btn-primary" style="font-size:1rem;padding:18px 40px;">Request a Meeting</a></div>
     <div class="cta-contacts reveal reveal-d4">
-      <a href="mailto:1000pacific@gmail.com" class="cta-contact-item">✉ 1000pacific@gmail.com</a>
+      <a href="/cdn-cgi/l/email-protection#87b6b7b7b7f7e6e4eee1eee4c7e0eae6eeeba9e4e8ea" class="cta-contact-item">✉ <span class="__cf_email__" data-cfemail="11202121216170727877787251767c70787d3f727e7c">[email&#160;protected]</span></a>
       <a href="tel:3109995015" class="cta-contact-item">☎ (310) 999-5015</a>
       <div class="cta-contact-item">👤 Roman Alexander, CEO — Concord Pacific, Corp</div>
     </div>
@@ -1187,14 +1086,14 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,.06); p
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ═══════════════════════════════════════════
-   INTRO OVERLAY SYSTEM
+   AD VIDEO POPUP SYSTEM
    ═══════════════════════════════════════════ */
 const introOverlay  = document.getElementById('intro-overlay');
+const introBackdrop = document.getElementById('intro-backdrop');
 const introVideo    = document.getElementById('intro-video');
 const introProgress = document.getElementById('introProgress');
-const introEnterBtn = document.getElementById('introEnterBtn');
 const introSkip     = document.getElementById('introSkip');
 
 let introDone = false;
@@ -1202,66 +1101,34 @@ let introDone = false;
 function dismissIntro() {
   if (introDone) return;
   introDone = true;
-
-  // Stop video
   introVideo.pause();
-
-  // Play exit animation
   introOverlay.classList.add('dismissing');
-
-  // After animation ends, remove the overlay entirely and re-enable scroll
+  introBackdrop.classList.add('dismissing');
   introOverlay.addEventListener('animationend', () => {
     introOverlay.style.display = 'none';
-    document.body.classList.remove('intro-active');
+    introBackdrop.style.display = 'none';
   }, { once: true });
 }
 
-function startVideo() {
-  // Switch to playing state (fades in the video, hides idle content)
-  introOverlay.classList.add('playing');
-
-  // Play video — browsers require a user gesture, which we have via click
-  introVideo.play().catch(() => {
-    // If video fails to load (file missing), go straight to dismiss
-    dismissIntro();
-  });
-
-  // Update progress bar as video plays
-  introVideo.addEventListener('timeupdate', () => {
-    if (introVideo.duration) {
-      const pct = (introVideo.currentTime / introVideo.duration) * 100;
-      introProgress.style.width = pct + '%';
-    }
-  });
-
-  // Auto-dismiss when video ends
-  introVideo.addEventListener('ended', dismissIntro, { once: true });
-
-  // Also allow clicking the playing video to skip
-  introVideo.addEventListener('click', dismissIntro, { once: true });
-}
-
-// ENTER BUTTON — plays video
-introEnterBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  startVideo();
-});
-
-// SKIP — dismisses immediately without playing
-introSkip.addEventListener('click', (e) => {
-  e.stopPropagation();
-  if (introOverlay.classList.contains('playing')) {
-    dismissIntro();
-  } else {
-    // Haven't started video yet — just dismiss
-    introDone = true;
-    introOverlay.classList.add('dismissing');
-    introOverlay.addEventListener('animationend', () => {
-      introOverlay.style.display = 'none';
-      document.body.classList.remove('intro-active');
-    }, { once: true });
+// Update progress bar as video plays
+introVideo.addEventListener('timeupdate', () => {
+  if (introVideo.duration) {
+    const pct = (introVideo.currentTime / introVideo.duration) * 100;
+    introProgress.style.width = pct + '%';
   }
 });
+
+// Auto-dismiss when video ends
+introVideo.addEventListener('ended', dismissIntro, { once: true });
+
+// X button closes the popup
+introSkip.addEventListener('click', (e) => {
+  e.stopPropagation();
+  dismissIntro();
+});
+
+// Clicking the backdrop also closes
+introBackdrop.addEventListener('click', dismissIntro);
 
 /* ═══════════════════════════════════════════
    EXISTING SITE SCRIPTS

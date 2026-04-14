@@ -22,41 +22,48 @@
       position: relative;
       overflow: hidden;
     }
+
     #finishes::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 30% 50%, rgba(59,142,232,0.08) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 30% 50%, rgba(59, 142, 232, 0.08) 0%, transparent 65%);
       pointer-events: none;
     }
+
     .finishes-inner {
       max-width: 1080px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
     }
+
     .finishes-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 24px;
       margin-top: 48px;
     }
+
     .finish-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 32px 24px;
       text-align: center;
       transition: border-color 0.3s, transform 0.3s;
     }
+
     .finish-card:hover {
-      border-color: rgba(59,142,232,0.4);
+      border-color: rgba(59, 142, 232, 0.4);
       transform: translateY(-4px);
     }
+
     .finish-icon {
       font-size: 2.2rem;
       margin-bottom: 16px;
     }
+
     .finish-name {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.05rem;
@@ -66,6 +73,7 @@
       letter-spacing: 0.08em;
       margin-bottom: 10px;
     }
+
     .finish-desc {
       font-size: 0.88rem;
       color: #7eb3e0;
@@ -79,10 +87,12 @@
       position: relative;
       overflow: hidden;
     }
+
     .precedent-inner {
       max-width: 1080px;
       margin: 0 auto;
     }
+
     .precedent-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -90,26 +100,34 @@
       align-items: center;
       margin-top: 48px;
     }
+
     @media (max-width: 768px) {
-      .precedent-layout { grid-template-columns: 1fr; gap: 32px; }
+      .precedent-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
     }
+
     .precedent-text p {
       color: #a8c0d8;
       font-size: 1rem;
       line-height: 1.75;
       margin-bottom: 16px;
     }
+
     .precedent-box {
-      background: rgba(59,142,232,0.07);
-      border: 1px solid rgba(59,142,232,0.2);
+      background: rgba(59, 142, 232, 0.07);
+      border: 1px solid rgba(59, 142, 232, 0.2);
       border-radius: 20px;
       padding: 40px;
       text-align: center;
     }
+
     .precedent-box-flag {
       font-size: 3rem;
       margin-bottom: 16px;
     }
+
     .precedent-box-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.4rem;
@@ -119,16 +137,18 @@
       letter-spacing: 0.08em;
       margin-bottom: 8px;
     }
+
     .precedent-box-sub {
       font-size: 0.9rem;
       color: #7eb3e0;
       line-height: 1.5;
     }
+
     .precedent-proof-tag {
       display: inline-block;
       margin-top: 20px;
-      background: rgba(59,142,232,0.15);
-      border: 1px solid rgba(59,142,232,0.3);
+      background: rgba(59, 142, 232, 0.15);
+      border: 1px solid rgba(59, 142, 232, 0.3);
       color: #7eb3e0;
       font-size: 0.78rem;
       font-family: 'Space Mono', monospace;
@@ -145,35 +165,41 @@
       position: relative;
       overflow: hidden;
     }
+
     #business-model::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 80% 30%, rgba(59,142,232,0.1) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 80% 30%, rgba(59, 142, 232, 0.1) 0%, transparent 65%);
       pointer-events: none;
     }
+
     .bm-inner {
       max-width: 1080px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
     }
+
     .bm-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 28px;
       margin-top: 48px;
     }
+
     .bm-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 32px;
     }
+
     .bm-card-icon {
       font-size: 1.6rem;
       margin-bottom: 16px;
     }
+
     .bm-card-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.1rem;
@@ -183,6 +209,7 @@
       letter-spacing: 0.07em;
       margin-bottom: 16px;
     }
+
     .bm-list {
       list-style: none;
       padding: 0;
@@ -191,6 +218,7 @@
       flex-direction: column;
       gap: 10px;
     }
+
     .bm-list li {
       color: #a8c0d8;
       font-size: 0.93rem;
@@ -198,18 +226,21 @@
       gap: 10px;
       line-height: 1.5;
     }
+
     .bm-list li span.dot {
       color: #3b8ee8;
       flex-shrink: 0;
       font-weight: 700;
     }
+
     .bm-scalability {
       margin-top: 40px;
-      background: rgba(59,142,232,0.07);
-      border: 1px solid rgba(59,142,232,0.2);
+      background: rgba(59, 142, 232, 0.07);
+      border: 1px solid rgba(59, 142, 232, 0.2);
       border-radius: 16px;
       padding: 32px;
     }
+
     .bm-scalability p {
       color: #c8d8e8;
       font-size: 1rem;
@@ -223,41 +254,50 @@
       background: #07111f;
       position: relative;
     }
+
     .mfg-inner {
       max-width: 1080px;
       margin: 0 auto;
     }
+
     .mfg-phases {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 32px;
       margin-top: 48px;
     }
+
     @media (max-width: 700px) {
-      .mfg-phases { grid-template-columns: 1fr; }
+      .mfg-phases {
+        grid-template-columns: 1fr;
+      }
     }
+
     .mfg-phase {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 36px;
       position: relative;
       overflow: hidden;
     }
+
     .mfg-phase.phase-2 {
-      border-color: rgba(59,142,232,0.25);
-      background: rgba(59,142,232,0.06);
+      border-color: rgba(59, 142, 232, 0.25);
+      background: rgba(59, 142, 232, 0.06);
     }
+
     .mfg-phase-num {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 4rem;
       font-weight: 800;
-      color: rgba(59,142,232,0.15);
+      color: rgba(59, 142, 232, 0.15);
       position: absolute;
       top: 16px;
       right: 24px;
       line-height: 1;
     }
+
     .mfg-phase-label {
       font-family: 'Space Mono', monospace;
       font-size: 0.72rem;
@@ -266,6 +306,7 @@
       letter-spacing: 0.1em;
       margin-bottom: 12px;
     }
+
     .mfg-phase-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.4rem;
@@ -275,6 +316,7 @@
       letter-spacing: 0.06em;
       margin-bottom: 16px;
     }
+
     .mfg-phase p {
       color: #a8c0d8;
       font-size: 0.95rem;
@@ -289,34 +331,42 @@
       position: relative;
       overflow: hidden;
     }
+
     #gtm::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 20% 80%, rgba(59,142,232,0.09) 0%, transparent 60%);
+      background: radial-gradient(ellipse at 20% 80%, rgba(59, 142, 232, 0.09) 0%, transparent 60%);
       pointer-events: none;
     }
+
     .gtm-inner {
       max-width: 1080px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
     }
+
     .gtm-phases {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 32px;
       margin-top: 48px;
     }
+
     @media (max-width: 700px) {
-      .gtm-phases { grid-template-columns: 1fr; }
+      .gtm-phases {
+        grid-template-columns: 1fr;
+      }
     }
+
     .gtm-phase {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 36px;
     }
+
     .gtm-phase-label {
       font-family: 'Space Mono', monospace;
       font-size: 0.72rem;
@@ -325,6 +375,7 @@
       letter-spacing: 0.1em;
       margin-bottom: 10px;
     }
+
     .gtm-phase-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.3rem;
@@ -334,6 +385,7 @@
       letter-spacing: 0.06em;
       margin-bottom: 20px;
     }
+
     .gtm-list {
       list-style: none;
       padding: 0;
@@ -342,6 +394,7 @@
       flex-direction: column;
       gap: 12px;
     }
+
     .gtm-list li {
       color: #a8c0d8;
       font-size: 0.93rem;
@@ -350,18 +403,21 @@
       align-items: flex-start;
       line-height: 1.5;
     }
+
     .gtm-list li span.arrow {
       color: #3b8ee8;
       flex-shrink: 0;
       font-weight: 700;
     }
+
     .gtm-note {
       margin-top: 40px;
-      background: rgba(59,142,232,0.07);
-      border: 1px solid rgba(59,142,232,0.2);
+      background: rgba(59, 142, 232, 0.07);
+      border: 1px solid rgba(59, 142, 232, 0.2);
       border-radius: 16px;
       padding: 28px 32px;
     }
+
     .gtm-note p {
       color: #c8d8e8;
       font-size: 0.97rem;
@@ -375,23 +431,27 @@
       background: #07111f;
       position: relative;
     }
+
     .fin-inner {
       max-width: 1080px;
       margin: 0 auto;
     }
+
     .fin-table-wrap {
       margin-top: 48px;
       overflow-x: auto;
       border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
+
     .fin-table {
       width: 100%;
       border-collapse: collapse;
       min-width: 640px;
     }
+
     .fin-table th {
-      background: rgba(59,142,232,0.12);
+      background: rgba(59, 142, 232, 0.12);
       color: #7eb3e0;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.85rem;
@@ -399,48 +459,57 @@
       letter-spacing: 0.1em;
       padding: 16px 20px;
       text-align: left;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       white-space: nowrap;
     }
+
     .fin-table td {
       padding: 16px 20px;
       font-size: 0.95rem;
       color: #c8d8e8;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
+
     .fin-table tr:last-child td {
       border-bottom: none;
     }
+
     .fin-table tr:hover td {
-      background: rgba(59,142,232,0.05);
+      background: rgba(59, 142, 232, 0.05);
     }
+
     .fin-table td.year-num {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700;
       font-size: 1.05rem;
       color: #3b8ee8;
     }
+
     .fin-table td.highlight {
       color: #fff;
       font-weight: 600;
     }
+
     .fin-table td.margin {
       color: #4cde80;
       font-weight: 600;
     }
+
     .fin-summary {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 24px;
       margin-top: 36px;
     }
+
     .fin-sum-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
       padding: 28px 24px;
       text-align: center;
     }
+
     .fin-sum-val {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 2.2rem;
@@ -448,12 +517,14 @@
       color: #3b8ee8;
       margin-bottom: 6px;
     }
+
     .fin-sum-label {
       font-size: 0.82rem;
       color: #7eb3e0;
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
+
     .fin-note {
       margin-top: 16px;
       font-size: 0.8rem;
@@ -468,29 +539,33 @@
       position: relative;
       overflow: hidden;
     }
+
     #funding::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 60% 40%, rgba(59,142,232,0.12) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 60% 40%, rgba(59, 142, 232, 0.12) 0%, transparent 65%);
       pointer-events: none;
     }
+
     .fund-inner {
       max-width: 1080px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
     }
+
     .fund-ask {
       display: inline-flex;
       align-items: center;
       gap: 16px;
-      background: rgba(59,142,232,0.1);
-      border: 1px solid rgba(59,142,232,0.3);
+      background: rgba(59, 142, 232, 0.1);
+      border: 1px solid rgba(59, 142, 232, 0.3);
       border-radius: 16px;
       padding: 24px 36px;
       margin: 32px 0 48px;
     }
+
     .fund-ask-amount {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 3rem;
@@ -498,28 +573,33 @@
       color: #fff;
       line-height: 1;
     }
+
     .fund-ask-label {
       font-size: 0.88rem;
       color: #7eb3e0;
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
+
     .fund-uses {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 24px;
       margin-bottom: 48px;
     }
+
     .fund-use-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
       padding: 28px;
     }
+
     .fund-use-icon {
       font-size: 1.5rem;
       margin-bottom: 12px;
     }
+
     .fund-use-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1rem;
@@ -529,6 +609,7 @@
       letter-spacing: 0.07em;
       margin-bottom: 10px;
     }
+
     .fund-use-desc {
       font-size: 0.88rem;
       color: #7eb3e0;
@@ -541,26 +622,31 @@
       background: #07111f;
       position: relative;
     }
+
     .hiring-inner {
       max-width: 1080px;
       margin: 0 auto;
     }
+
     .hiring-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 24px;
       margin-top: 40px;
     }
+
     .hiring-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
       padding: 28px;
     }
+
     .hiring-card-icon {
       font-size: 1.5rem;
       margin-bottom: 14px;
     }
+
     .hiring-card-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.05rem;
@@ -570,18 +656,21 @@
       letter-spacing: 0.07em;
       margin-bottom: 10px;
     }
+
     .hiring-card-desc {
       font-size: 0.88rem;
       color: #7eb3e0;
       line-height: 1.6;
     }
+
     .hiring-commitment {
       margin-top: 40px;
-      background: rgba(59,142,232,0.07);
-      border: 1px solid rgba(59,142,232,0.2);
+      background: rgba(59, 142, 232, 0.07);
+      border: 1px solid rgba(59, 142, 232, 0.2);
       border-radius: 16px;
       padding: 32px;
     }
+
     .hiring-commitment p {
       color: #c8d8e8;
       font-size: 0.97rem;
@@ -704,18 +793,6 @@
       </div>
       <p style="text-align:center;color:#7eb3e0;font-size:0.82rem;margin-top:10px;letter-spacing:0.05em;">Limited 2026
         project slots available</p>
-
-      <!-- Patent drawing callout -->
-      <div style="max-width:700px;margin:40px auto 0;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:28px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
-        <div style="flex:1;min-width:220px;">
-          <div style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#3b8ee8;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Utility &amp; Design Patents Pending</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">STEEL-ONE Block System</div>
-          <div style="font-size:0.88rem;color:#7eb3e0;line-height:1.5;">Precision-engineered interlocking steel block — the core of the STEEL-ONE construction system. Patent applications filed.</div>
-        </div>
-        <div style="flex-shrink:0;background:#fff;border-radius:12px;padding:12px;width:220px;">
-          <img src="interior/1.png" alt="STEEL-ONE patent technical drawing — interlocking steel block system" style="width:100%;display:block;" />
-        </div>
-      </div>
     </section>
 
     <!-- TICKER -->
@@ -739,6 +816,28 @@
         <span class="ticker-item">Patent Pending</span>
         <span class="ticker-item">LEED Eligible</span>
         <span class="ticker-item">Rebuild LA Now</span>
+      </div>
+    </div>
+
+    <!-- PATENT CALLOUT -->
+    <div style="background:#07111f;padding:60px 24px;">
+      <div
+        style="max-width:700px;margin:0 auto;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:28px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:220px;">
+          <div
+            style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#3b8ee8;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">
+            Utility &amp; Design Patents Pending</div>
+          <div
+            style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">
+            STEEL-ONE Block System</div>
+          <div style="font-size:0.88rem;color:#7eb3e0;line-height:1.5;">Precision-engineered interlocking steel block —
+            the core of the STEEL-ONE construction system. Patent applications filed.</div>
+        </div>
+        <div style="flex-shrink:0;background:#fff;border-radius:12px;padding:12px;width:220px;">
+          <img src="interior/1.png" alt="STEEL-ONE patent technical drawing — interlocking steel block system"
+            style="width:100%;display:block;cursor:zoom-in;"
+            onclick="document.getElementById('patent-lightbox').style.display='flex'" />
+        </div>
       </div>
     </div>
 
@@ -773,8 +872,8 @@
           </div>
         </div>
       </div>
-    </div> 
-    
+    </div>
+
     <!-- PROCESS -->
     <section id="process">
       <div class="process-header reveal">
@@ -996,8 +1095,11 @@
               </div>
             </div>
             <!-- LEGO quote -->
-            <div style="margin-top:28px;padding:20px 24px;background:rgba(59,142,232,0.1);border-left:3px solid #3b8ee8;border-radius:0 12px 12px 0;">
-              <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:600;color:#fff;letter-spacing:0.03em;">Think LEGO, but for real buildings—durable, scalable, and beautiful.</p>
+            <div
+              style="margin-top:28px;padding:20px 24px;background:rgba(59,142,232,0.1);border-left:3px solid #3b8ee8;border-radius:0 12px 12px 0;">
+              <p
+                style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:600;color:#fff;letter-spacing:0.03em;">
+                Think LEGO, but for real buildings—durable, scalable, and beautiful.</p>
             </div>
           </div>
           <div class="block-visual">
@@ -1012,13 +1114,22 @@
         </div>
         <!-- Photo grid after LEGO line -->
         <div style="margin-top:48px;">
-          <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;color:#7eb3e0;margin-bottom:20px;font-weight:600;text-align:center;">What You Can Build</div>
+          <div
+            style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;color:#7eb3e0;margin-bottom:20px;font-weight:600;text-align:center;">
+            What You Can Build</div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;">
-            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/12.png" alt="Modern STEEL-ONE home with pool" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/8.png" alt="Luxury block-facade steel home" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/9.png" alt="Compact modular cube home" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/10.png" alt="Stacked cube modern home" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/11.png" alt="White cube home with pool" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/12.png"
+                alt="Modern STEEL-ONE home with pool" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            </div>
+            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/8.png"
+                alt="Luxury block-facade steel home" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            </div>
+            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/9.png"
+                alt="Compact modular cube home" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/10.png"
+                alt="Stacked cube modern home" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/11.png"
+                alt="White cube home with pool" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
         </div>
       </div>
@@ -1064,32 +1175,52 @@
     <section id="precedent" aria-label="Real-world precedent">
       <div class="precedent-inner">
         <span class="section-label reveal" style="display:inline-flex;margin-bottom:16px;">Real-World Precedent</span>
-        <h2 class="section-title reveal reveal-d1">Global Proof of<br /><span class="text-blue">Metal Modular Construction</span></h2>
+        <h2 class="section-title reveal reveal-d1">Global Proof of<br /><span class="text-blue">Metal Modular
+            Construction</span></h2>
         <div class="precedent-layout">
           <div class="precedent-text reveal reveal-d2">
-            <p>Steel-based modular construction isn't a concept — it's already been proven on the world stage. Micro-homes constructed from steel box units in Japan by architect Yasuhiro demonstrate the global viability of metal modular construction.</p>
-            <p>The <strong style="color:#fff;">"Cell Brick"</strong> project shows that precision-engineered steel units can be assembled into full living spaces — rapidly, repeatably, and beautifully. STEEL-ONE takes this proven concept and scales it for the American residential market.</p>
-            <p>What works for micro-housing in Japan works for full-scale homes in California — with the added advantages of fire resistance, earthquake performance, and speed that the US market demands right now.</p>
-            <a href="#cta" class="btn-primary" style="display:inline-flex;margin-top:24px;font-size:0.9rem;padding:14px 28px;">👉 See the STEEL-ONE System</a>
+            <p>Steel-based modular construction isn't a concept — it's already been proven on the world stage.
+              Micro-homes constructed from steel box units in Japan by architect Yasuhiro demonstrate the global
+              viability of metal modular construction.</p>
+            <p>The <strong style="color:#fff;">"Cell Brick"</strong> project shows that precision-engineered steel units
+              can be assembled into full living spaces — rapidly, repeatably, and beautifully. STEEL-ONE takes this
+              proven concept and scales it for the American residential market.</p>
+            <p>What works for micro-housing in Japan works for full-scale homes in California — with the added
+              advantages of fire resistance, earthquake performance, and speed that the US market demands right now.</p>
+            <a href="#cta" class="btn-primary"
+              style="display:inline-flex;margin-top:24px;font-size:0.9rem;padding:14px 28px;">👉 See the STEEL-ONE
+              System</a>
           </div>
           <div class="reveal reveal-d3">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
               <span style="font-size:1.4rem;">🇯🇵</span>
               <div>
-                <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.06em;">"Cell Brick" — Japan</div>
+                <div
+                  style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.06em;">
+                  "Cell Brick" — Japan</div>
                 <div style="font-size:0.8rem;color:#7eb3e0;">Architect Yasuhiro Yamashita</div>
               </div>
               <span class="precedent-proof-tag" style="margin-left:auto;">Global Proof</span>
             </div>
             <!-- 2x2 photo grid -->
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
-              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/13.png" alt="Cell Brick exterior Japan" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/15.png" alt="Cell Brick interior white grid" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/16.png" alt="Cell Brick interior blue grid" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/14.png" alt="Cell Brick interior living space" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/13.png"
+                  alt="Cell Brick exterior Japan" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              </div>
+              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/15.png"
+                  alt="Cell Brick interior white grid" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              </div>
+              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/16.png"
+                  alt="Cell Brick interior blue grid" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              </div>
+              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/14.png"
+                  alt="Cell Brick interior living space"
+                  style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
             </div>
-            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;text-align:center;">
-              <div style="color:#c8d8e8;font-size:0.9rem;line-height:1.6;">Metal modular construction has already proven viable across cultures, climates, and markets — STEEL-ONE brings it home.</div>
+            <div
+              style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;text-align:center;">
+              <div style="color:#c8d8e8;font-size:0.9rem;line-height:1.6;">Metal modular construction has already proven
+                viable across cultures, climates, and markets — STEEL-ONE brings it home.</div>
             </div>
           </div>
         </div>
@@ -1107,7 +1238,8 @@
           <span class="section-label fire-label">Fire Safety</span>
           <h2 class="fire-title">Steel<br />Doesn't<br /><span class="accent">Burn.</span></h2>
           <p class="fire-sub">Recent California wildfires destroyed thousands of homes in hours. <strong>
-              Pacific Palisades, Malibu, Altadena</strong> — over 16,000 structures gone. STEEL-ONE is designed for this reality
+              Pacific Palisades, Malibu, Altadena</strong> — over 16,000 structures gone. STEEL-ONE is designed for this
+            reality
             — a system that doesn't rely on materials that catch fire.<br /><br /><em>When everything else burns — steel
               stands.</em></p>
           <div class="fire-facts">
@@ -1312,7 +1444,7 @@
         </div>
       </div>
     </section>
- 
+
     <!-- MARKET -->
     <section id="market">
       <div class="market-layout">
@@ -1359,15 +1491,18 @@
       <div class="gtm-inner">
         <span class="section-label reveal" style="display:inline-flex;margin-bottom:16px;">Go-to-Market Strategy</span>
         <h2 class="section-title reveal reveal-d1">Launch. Scale.<br /><span class="text-blue">Dominate.</span></h2>
-        <p class="section-body reveal reveal-d2" style="max-width:520px;margin:16px auto 0;">A two-phase strategy that establishes market presence, then accelerates nationally through proven B2B channels.</p>
+        <p class="section-body reveal reveal-d2" style="max-width:520px;margin:16px auto 0;">A two-phase strategy that
+          establishes market presence, then accelerates nationally through proven B2B channels.</p>
         <div class="gtm-phases">
           <div class="gtm-phase reveal reveal-d1">
             <div class="gtm-phase-label">Phase 1 · Y1–Y2</div>
             <div class="gtm-phase-title">Launch</div>
             <ul class="gtm-list">
-              <li><span class="arrow">→</span>Direct sales to prefabricated and modular home manufacturers, developers, builders, contractors</li>
+              <li><span class="arrow">→</span>Direct sales to prefabricated and modular home manufacturers, developers,
+                builders, contractors</li>
               <li><span class="arrow">→</span>Showcase demo homes</li>
-              <li><span class="arrow">→</span>Create the showroom in strategic location to display the Home made out of STEEL-ONE steel blocks</li>
+              <li><span class="arrow">→</span>Create the showroom in strategic location to display the Home made out of
+                STEEL-ONE steel blocks</li>
               <li><span class="arrow">→</span>Attend major trade shows (IBS, Greenbuild)</li>
               <li><span class="arrow">→</span>Targeted outreach via LinkedIn, T.V., direct email, SEO</li>
             </ul>
@@ -1380,16 +1515,19 @@
               <li><span class="arrow">→</span>"Certified Metal Block Builder" training network</li>
               <li><span class="arrow">→</span>Influencer partnerships (YouTube builders, green home advocates)</li>
               <li><span class="arrow">→</span>Regional licensing agreements</li>
-              <li><span class="arrow">→</span>Focused on high-ROI B2B channels with gradual DTC expansion in later years</li>
+              <li><span class="arrow">→</span>Focused on high-ROI B2B channels with gradual DTC expansion in later years
+              </li>
             </ul>
           </div>
         </div>
         <div class="gtm-note reveal reveal-d3">
-          <p><strong style="color:#fff;">Focused on high-ROI B2B channels with gradual DTC expansion in later years.</strong> Every phase is designed to build on the last — creating compounding market presence and a defensible position in the industrialized construction space.</p>
+          <p><strong style="color:#fff;">Focused on high-ROI B2B channels with gradual DTC expansion in later
+              years.</strong> Every phase is designed to build on the last — creating compounding market presence and a
+            defensible position in the industrialized construction space.</p>
         </div>
       </div>
     </section>
- 
+
     <!-- TEAM -->
     <section id="team">
       <span class="section-label reveal">The Team</span>
@@ -1418,7 +1556,7 @@
         </div>
       </div>
     </section>
- 
+
     <!-- INVESTOR / DEVELOPER SECTION -->
     <section id="investor" style="background:#0a1628;padding:100px 24px;position:relative;overflow:hidden;">
       <div
@@ -1504,7 +1642,7 @@
           <a href="tel:3109995015" class="btn-outline" style="font-size:1rem;padding:16px 36px;">👉 Schedule a Call</a>
         </div>
       </div>
-    </section> 
+    </section>
 
     <!-- CTA -->
     <section id="cta" aria-label="Contact us">
@@ -1715,7 +1853,15 @@
     if (chatSendBtn) chatSendBtn.addEventListener('click', handleSend);
     if (chatInput) chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleSend(); });
   </script>
-
+  <!-- Patent drawing lightbox -->
+  <div id="patent-lightbox" onclick="this.style.display='none'"
+    style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out;padding:24px;">
+    <img src="interior/1.png" alt="STEEL-ONE patent drawing enlarged"
+      style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:12px;box-shadow:0 0 60px rgba(0,0,0,0.8);" />
+    <button onclick="document.getElementById('patent-lightbox').style.display='none'"
+      style="position:absolute;top:24px;right:32px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1;"
+      aria-label="Close">&times;</button>
+  </div>
 </body>
 
 </html>

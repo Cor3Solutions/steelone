@@ -13,102 +13,16 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/x-icon" href="img/logo.png">
   <style>
+    /* ── NEW SECTIONS STYLES ── */
 
-    /* ══ SHARED SWIPE CAROUSEL ══ */
-    .swipe-row {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      gap: 16px;
-      padding-bottom: 4px;
-    }
-    .swipe-row::-webkit-scrollbar { display: none; }
-    .swipe-row > * {
-      scroll-snap-align: start;
-      flex-shrink: 0;
-    }
-    .swipe-hint {
-      display: none;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #4a6a8a;
-      text-align: right;
-      margin-bottom: 8px;
-      font-family: 'Space Mono', monospace;
-    }
-
-    /* ══ HAMBURGER NAV ══ */
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      z-index: 200;
-    }
-    .nav-hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: #fff;
-      border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    .nav-mobile-drawer {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: #060e1c;
-      z-index: 150;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-    }
-    .nav-mobile-drawer.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .nav-mobile-drawer a {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-    }
-    .nav-mobile-drawer a.nav-cta-mobile {
-      background: #3b8ee8;
-      color: #fff;
-      padding: 14px 36px;
-      border-radius: 100px;
-      font-size: 1.2rem;
-      margin-top: 8px;
-    }
-
-    /* ══ FINISHES ══ */
+    /* Finishes Section */
     #finishes {
-      padding: 80px 24px;
+      padding: 100px 24px;
       background: #060e1c;
       position: relative;
       overflow: hidden;
     }
+
     #finishes::before {
       content: '';
       position: absolute;
@@ -116,23 +30,40 @@
       background: radial-gradient(ellipse at 30% 50%, rgba(59, 142, 232, 0.08) 0%, transparent 65%);
       pointer-events: none;
     }
-    .finishes-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .finishes-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
     .finishes-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 24px;
       margin-top: 48px;
     }
+
     .finish-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 32px 24px;
       text-align: center;
       transition: border-color 0.3s, transform 0.3s;
     }
-    .finish-card:hover { border-color: rgba(59,142,232,0.4); transform: translateY(-4px); }
-    .finish-icon { font-size: 2.2rem; margin-bottom: 16px; }
+
+    .finish-card:hover {
+      border-color: rgba(59, 142, 232, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .finish-icon {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+    }
+
     .finish-name {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.05rem;
@@ -142,11 +73,26 @@
       letter-spacing: 0.08em;
       margin-bottom: 10px;
     }
-    .finish-desc { font-size: 0.88rem; color: #7eb3e0; line-height: 1.5; }
 
-    /* ══ PRECEDENT ══ */
-    #precedent { padding: 80px 24px; background: #07111f; position: relative; overflow: hidden; }
-    .precedent-inner { max-width: 1080px; margin: 0 auto; }
+    .finish-desc {
+      font-size: 0.88rem;
+      color: #7eb3e0;
+      line-height: 1.5;
+    }
+
+    /* Japan Precedent */
+    #precedent {
+      padding: 100px 24px;
+      background: #07111f;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .precedent-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
     .precedent-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -154,15 +100,34 @@
       align-items: center;
       margin-top: 48px;
     }
-    .precedent-text p { color: #a8c0d8; font-size: 1rem; line-height: 1.75; margin-bottom: 16px; }
+
+    @media (max-width: 768px) {
+      .precedent-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    .precedent-text p {
+      color: #a8c0d8;
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
     .precedent-box {
-      background: rgba(59,142,232,0.07);
-      border: 1px solid rgba(59,142,232,0.2);
+      background: rgba(59, 142, 232, 0.07);
+      border: 1px solid rgba(59, 142, 232, 0.2);
       border-radius: 20px;
       padding: 40px;
       text-align: center;
     }
-    .precedent-box-flag { font-size: 3rem; margin-bottom: 16px; }
+
+    .precedent-box-flag {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
     .precedent-box-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.4rem;
@@ -172,12 +137,18 @@
       letter-spacing: 0.08em;
       margin-bottom: 8px;
     }
-    .precedent-box-sub { font-size: 0.9rem; color: #7eb3e0; line-height: 1.5; }
+
+    .precedent-box-sub {
+      font-size: 0.9rem;
+      color: #7eb3e0;
+      line-height: 1.5;
+    }
+
     .precedent-proof-tag {
       display: inline-block;
       margin-top: 20px;
-      background: rgba(59,142,232,0.15);
-      border: 1px solid rgba(59,142,232,0.3);
+      background: rgba(59, 142, 232, 0.15);
+      border: 1px solid rgba(59, 142, 232, 0.3);
       color: #7eb3e0;
       font-size: 0.78rem;
       font-family: 'Space Mono', monospace;
@@ -187,34 +158,48 @@
       text-transform: uppercase;
     }
 
-    /* ══ BUSINESS MODEL ══ */
+    /* Business Model */
     #business-model {
-      padding: 80px 24px;
+      padding: 100px 24px;
       background: #060e1c;
       position: relative;
       overflow: hidden;
     }
+
     #business-model::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 80% 30%, rgba(59,142,232,0.1) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 80% 30%, rgba(59, 142, 232, 0.1) 0%, transparent 65%);
       pointer-events: none;
     }
-    .bm-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .bm-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
     .bm-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 28px;
       margin-top: 48px;
     }
+
     .bm-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 32px;
     }
-    .bm-card-icon { font-size: 1.6rem; margin-bottom: 16px; }
+
+    .bm-card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+
     .bm-card-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.1rem;
@@ -224,46 +209,95 @@
       letter-spacing: 0.07em;
       margin-bottom: 16px;
     }
-    .bm-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-    .bm-list li { color: #a8c0d8; font-size: 0.93rem; display: flex; gap: 10px; line-height: 1.5; }
-    .bm-list li span.dot { color: #3b8ee8; flex-shrink: 0; font-weight: 700; }
+
+    .bm-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .bm-list li {
+      color: #a8c0d8;
+      font-size: 0.93rem;
+      display: flex;
+      gap: 10px;
+      line-height: 1.5;
+    }
+
+    .bm-list li span.dot {
+      color: #3b8ee8;
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
     .bm-scalability {
       margin-top: 40px;
-      background: rgba(59,142,232,0.07);
-      border: 1px solid rgba(59,142,232,0.2);
+      background: rgba(59, 142, 232, 0.07);
+      border: 1px solid rgba(59, 142, 232, 0.2);
       border-radius: 16px;
       padding: 32px;
     }
-    .bm-scalability p { color: #c8d8e8; font-size: 1rem; line-height: 1.7; margin: 0; }
 
-    /* ══ MANUFACTURING ══ */
-    #manufacturing { padding: 80px 24px; background: #07111f; position: relative; }
-    .mfg-inner { max-width: 1080px; margin: 0 auto; }
+    .bm-scalability p {
+      color: #c8d8e8;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Manufacturing */
+    #manufacturing {
+      padding: 100px 24px;
+      background: #07111f;
+      position: relative;
+    }
+
+    .mfg-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
     .mfg-phases {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 32px;
       margin-top: 48px;
     }
+
+    @media (max-width: 700px) {
+      .mfg-phases {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .mfg-phase {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 36px;
       position: relative;
       overflow: hidden;
     }
-    .mfg-phase.phase-2 { border-color: rgba(59,142,232,0.25); background: rgba(59,142,232,0.06); }
+
+    .mfg-phase.phase-2 {
+      border-color: rgba(59, 142, 232, 0.25);
+      background: rgba(59, 142, 232, 0.06);
+    }
+
     .mfg-phase-num {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 4rem;
       font-weight: 800;
-      color: rgba(59,142,232,0.15);
+      color: rgba(59, 142, 232, 0.15);
       position: absolute;
       top: 16px;
       right: 24px;
       line-height: 1;
     }
+
     .mfg-phase-label {
       font-family: 'Space Mono', monospace;
       font-size: 0.72rem;
@@ -272,6 +306,7 @@
       letter-spacing: 0.1em;
       margin-bottom: 12px;
     }
+
     .mfg-phase-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.4rem;
@@ -281,30 +316,57 @@
       letter-spacing: 0.06em;
       margin-bottom: 16px;
     }
-    .mfg-phase p { color: #a8c0d8; font-size: 0.95rem; line-height: 1.7; margin: 0; }
 
-    /* ══ GTM ══ */
-    #gtm { padding: 80px 24px; background: #060e1c; position: relative; overflow: hidden; }
+    .mfg-phase p {
+      color: #a8c0d8;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* GTM */
+    #gtm {
+      padding: 100px 24px;
+      background: #060e1c;
+      position: relative;
+      overflow: hidden;
+    }
+
     #gtm::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 20% 80%, rgba(59,142,232,0.09) 0%, transparent 60%);
+      background: radial-gradient(ellipse at 20% 80%, rgba(59, 142, 232, 0.09) 0%, transparent 60%);
       pointer-events: none;
     }
-    .gtm-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .gtm-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
     .gtm-phases {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 32px;
       margin-top: 48px;
     }
+
+    @media (max-width: 700px) {
+      .gtm-phases {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .gtm-phase {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 36px;
     }
+
     .gtm-phase-label {
       font-family: 'Space Mono', monospace;
       font-size: 0.72rem;
@@ -313,6 +375,7 @@
       letter-spacing: 0.1em;
       margin-bottom: 10px;
     }
+
     .gtm-phase-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.3rem;
@@ -322,31 +385,73 @@
       letter-spacing: 0.06em;
       margin-bottom: 20px;
     }
-    .gtm-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
-    .gtm-list li { color: #a8c0d8; font-size: 0.93rem; display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
-    .gtm-list li span.arrow { color: #3b8ee8; flex-shrink: 0; font-weight: 700; }
+
+    .gtm-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .gtm-list li {
+      color: #a8c0d8;
+      font-size: 0.93rem;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+
+    .gtm-list li span.arrow {
+      color: #3b8ee8;
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
     .gtm-note {
       margin-top: 40px;
-      background: rgba(59,142,232,0.07);
-      border: 1px solid rgba(59,142,232,0.2);
+      background: rgba(59, 142, 232, 0.07);
+      border: 1px solid rgba(59, 142, 232, 0.2);
       border-radius: 16px;
       padding: 28px 32px;
     }
-    .gtm-note p { color: #c8d8e8; font-size: 0.97rem; line-height: 1.7; margin: 0; }
 
-    /* ══ FINANCIALS ══ */
-    #financials { padding: 80px 24px; background: #07111f; position: relative; }
-    .fin-inner { max-width: 1080px; margin: 0 auto; }
+    .gtm-note p {
+      color: #c8d8e8;
+      font-size: 0.97rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Financials */
+    #financials {
+      padding: 100px 24px;
+      background: #07111f;
+      position: relative;
+    }
+
+    .fin-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
     .fin-table-wrap {
       margin-top: 48px;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
       border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .fin-table { width: 100%; border-collapse: collapse; min-width: 640px; }
+
+    .fin-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+    }
+
     .fin-table th {
-      background: rgba(59,142,232,0.12);
+      background: rgba(59, 142, 232, 0.12);
       color: #7eb3e0;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.85rem;
@@ -354,53 +459,147 @@
       letter-spacing: 0.1em;
       padding: 16px 20px;
       text-align: left;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       white-space: nowrap;
     }
-    .fin-table td { padding: 16px 20px; font-size: 0.95rem; color: #c8d8e8; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .fin-table tr:last-child td { border-bottom: none; }
-    .fin-table tr:hover td { background: rgba(59,142,232,0.05); }
-    .fin-table td.year-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; color: #3b8ee8; }
-    .fin-table td.highlight { color: #fff; font-weight: 600; }
-    .fin-table td.margin { color: #4cde80; font-weight: 600; }
-    .fin-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 36px; }
+
+    .fin-table td {
+      padding: 16px 20px;
+      font-size: 0.95rem;
+      color: #c8d8e8;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .fin-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .fin-table tr:hover td {
+      background: rgba(59, 142, 232, 0.05);
+    }
+
+    .fin-table td.year-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #3b8ee8;
+    }
+
+    .fin-table td.highlight {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .fin-table td.margin {
+      color: #4cde80;
+      font-weight: 600;
+    }
+
+    .fin-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 36px;
+    }
+
     .fin-sum-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
       padding: 28px 24px;
       text-align: center;
     }
-    .fin-sum-val { font-family: 'Barlow Condensed', sans-serif; font-size: 2.2rem; font-weight: 800; color: #3b8ee8; margin-bottom: 6px; }
-    .fin-sum-label { font-size: 0.82rem; color: #7eb3e0; text-transform: uppercase; letter-spacing: 0.08em; }
-    .fin-note { margin-top: 16px; font-size: 0.8rem; color: #4a6a8a; font-style: italic; }
 
-    /* ══ FUNDING ══ */
-    #funding { padding: 80px 24px; background: #060e1c; position: relative; overflow: hidden; }
+    .fin-sum-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #3b8ee8;
+      margin-bottom: 6px;
+    }
+
+    .fin-sum-label {
+      font-size: 0.82rem;
+      color: #7eb3e0;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .fin-note {
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: #4a6a8a;
+      font-style: italic;
+    }
+
+    /* Funding */
+    #funding {
+      padding: 100px 24px;
+      background: #060e1c;
+      position: relative;
+      overflow: hidden;
+    }
+
     #funding::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 60% 40%, rgba(59,142,232,0.12) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 60% 40%, rgba(59, 142, 232, 0.12) 0%, transparent 65%);
       pointer-events: none;
     }
-    .fund-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .fund-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
     .fund-ask {
       display: inline-flex;
       align-items: center;
       gap: 16px;
-      background: rgba(59,142,232,0.1);
-      border: 1px solid rgba(59,142,232,0.3);
+      background: rgba(59, 142, 232, 0.1);
+      border: 1px solid rgba(59, 142, 232, 0.3);
       border-radius: 16px;
       padding: 24px 36px;
       margin: 32px 0 48px;
-      flex-wrap: wrap;
     }
-    .fund-ask-amount { font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; font-weight: 800; color: #fff; line-height: 1; }
-    .fund-ask-label { font-size: 0.88rem; color: #7eb3e0; text-transform: uppercase; letter-spacing: 0.08em; }
-    .fund-uses { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-bottom: 48px; }
-    .fund-use-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 28px; }
-    .fund-use-icon { font-size: 1.5rem; margin-bottom: 12px; }
+
+    .fund-ask-amount {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .fund-ask-label {
+      font-size: 0.88rem;
+      color: #7eb3e0;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .fund-uses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .fund-use-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 28px;
+    }
+
+    .fund-use-icon {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
     .fund-use-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1rem;
@@ -410,309 +609,87 @@
       letter-spacing: 0.07em;
       margin-bottom: 10px;
     }
-    .fund-use-desc { font-size: 0.88rem; color: #7eb3e0; line-height: 1.6; }
 
-    /* ══ TEAM HIRING ══ */
-    #team-hiring { padding: 80px 24px 100px; background: #07111f; position: relative; }
-    .hiring-inner { max-width: 1080px; margin: 0 auto; }
-    .hiring-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 40px; }
-    .hiring-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 28px; }
-    .hiring-card-icon { font-size: 1.5rem; margin-bottom: 14px; }
-    .hiring-card-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
-    .hiring-card-desc { font-size: 0.88rem; color: #7eb3e0; line-height: 1.6; }
-    .hiring-commitment { margin-top: 40px; background: rgba(59,142,232,0.07); border: 1px solid rgba(59,142,232,0.2); border-radius: 16px; padding: 32px; }
-    .hiring-commitment p { color: #c8d8e8; font-size: 0.97rem; line-height: 1.75; margin: 0; }
-
-    /* ══ CTA SECTION ══ */
-    #cta { position: relative; padding: 100px 24px; overflow: hidden; color: #fff; text-align: center; }
-    .cta-inner { max-width: 800px; margin: 0 auto; }
-    .cta-title { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.1; margin-bottom: 24px; }
-    .cta-sub { font-size: 1.1rem; margin-bottom: 40px; opacity: 0.9; line-height: 1.6; }
-    .cta-contacts { margin-top: 48px; display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; font-size: 0.95rem; }
-    .cta-contact { color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: opacity 0.2s; }
-    .cta-contact:hover { opacity: 0.8; }
-
-    /* ══ RESPONSIVE ══ */
-
-    /* ── 900px ── */
-    @media (max-width: 900px) {
-      .precedent-layout { grid-template-columns: 1fr; gap: 32px; }
-      .mfg-phases { grid-template-columns: 1fr; }
-      .gtm-phases { grid-template-columns: 1fr; }
+    .fund-use-desc {
+      font-size: 0.88rem;
+      color: #7eb3e0;
+      line-height: 1.6;
     }
 
-    /* ── 768px — main mobile breakpoint ── */
-    @media (max-width: 768px) {
-
-      /* Nav: hide links, show hamburger */
-      .nav-links { display: none !important; }
-      .nav-cta { display: none !important; }
-      .nav-hamburger { display: flex !important; }
-      .nav-mobile-drawer { display: flex; }
-
-      /* Hero stats: 3 across, then wrap */
-      .hero-stats {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 12px !important;
-        padding: 16px !important;
-      }
-
-      /* Compare split: stack on mobile */
-      .compare-split {
-        flex-direction: column !important;
-        gap: 0 !important;
-      }
-      .compare-divider { display: none !important; }
-      .compare-col { width: 100% !important; }
-
-      /* Calculator: stack */
-      .calc-layout {
-        grid-template-columns: 1fr !important;
-        gap: 24px !important;
-      }
-
-      /* Block layout: stack */
-      .block-layout {
-        grid-template-columns: 1fr !important;
-        gap: 32px !important;
-      }
-
-      /* Market layout: stack */
-      .market-layout {
-        grid-template-columns: 1fr !important;
-        gap: 40px !important;
-      }
-      .market-stats { grid-template-columns: 1fr 1fr !important; }
-
-      /* Benefits grid: swipeable */
-      .benefits-grid {
-        display: flex !important;
-        flex-direction: row !important;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        gap: 14px;
-        padding-bottom: 4px;
-        margin-top: 24px;
-      }
-      .benefits-grid::-webkit-scrollbar { display: none; }
-      .benefit-card {
-        flex-shrink: 0 !important;
-        width: 76vw !important;
-        max-width: 300px !important;
-        scroll-snap-align: start !important;
-      }
-
-      /* Process grid: swipeable */
-      .process-grid {
-        display: flex !important;
-        flex-direction: row !important;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        gap: 14px;
-        padding-bottom: 4px;
-        margin-top: 24px;
-      }
-      .process-grid::-webkit-scrollbar { display: none; }
-      .process-card {
-        flex-shrink: 0 !important;
-        width: 76vw !important;
-        max-width: 300px !important;
-        scroll-snap-align: start !important;
-      }
-
-      /* Specs grid: swipeable */
-      .specs-grid {
-        display: flex !important;
-        flex-direction: row !important;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        gap: 12px;
-        padding-bottom: 4px;
-        margin-top: 24px;
-      }
-      .specs-grid::-webkit-scrollbar { display: none; }
-      .spec-card {
-        flex-shrink: 0 !important;
-        width: 44vw !important;
-        max-width: 180px !important;
-        scroll-snap-align: start !important;
-      }
-
-      /* Finishes grid: swipeable */
-      .finishes-grid {
-        display: flex !important;
-        flex-direction: row !important;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        gap: 14px;
-        margin-top: 32px;
-        padding-bottom: 4px;
-      }
-      .finishes-grid::-webkit-scrollbar { display: none; }
-      .finish-card {
-        flex-shrink: 0 !important;
-        width: 72vw !important;
-        max-width: 260px !important;
-        scroll-snap-align: start !important;
-      }
-
-      /* Investor cards: swipeable */
-      .investor-cards-row {
-        display: flex !important;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        gap: 16px;
-        padding-bottom: 4px;
-      }
-      .investor-cards-row::-webkit-scrollbar { display: none; }
-      .investor-card-item {
-        flex-shrink: 0;
-        width: 80vw;
-        max-width: 320px;
-        scroll-snap-align: start;
-      }
-
-      /* Fund uses: swipeable */
-      .fund-uses {
-        display: flex !important;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        gap: 14px;
-        padding-bottom: 4px;
-        margin-bottom: 32px;
-      }
-      .fund-uses::-webkit-scrollbar { display: none; }
-      .fund-use-card {
-        flex-shrink: 0;
-        width: 76vw;
-        max-width: 280px;
-        scroll-snap-align: start;
-      }
-      .fund-ask { padding: 20px 24px; }
-      .fund-ask-amount { font-size: 2.4rem; }
-
-      /* Show swipe hints */
-      .swipe-hint { display: block; }
-
-      /* Fire section: stack */
-      .fire-content {
-        flex-direction: column !important;
-        gap: 40px !important;
-        padding: 60px 20px !important;
-      }
-      .fire-left { width: 100% !important; }
-      .fire-table-wrap { width: 100% !important; max-width: 100% !important; }
-
-      /* CTA contacts stack */
-      .cta-contacts { flex-direction: column; gap: 16px; align-items: center; }
-      #cta { padding: 60px 20px; }
-
-      /* Patent callout: stack */
-      .patent-callout-inner {
-        flex-direction: column !important;
-        text-align: center;
-      }
-      .patent-callout-img { width: 100% !important; max-width: 280px; margin: 0 auto; }
-
-      /* Precedent photo grid: 1 col */
-      .precedent-photo-grid { grid-template-columns: 1fr 1fr !important; }
+    /* Team hiring roadmap */
+    #team-hiring {
+      padding: 80px 24px 100px;
+      background: #07111f;
+      position: relative;
     }
 
-    /* ── 600px ── */
-    @media (max-width: 600px) {
-      /* Hero stats: wrap to 2+3 */
-      .hero-stats { grid-template-columns: repeat(2, 1fr) !important; }
-
-      /* Market stats: 1 col */
-      .market-stats { grid-template-columns: 1fr !important; }
-
-      /* Benefits wider cards */
-      .benefit-card { width: 84vw !important; }
-      .process-card { width: 84vw !important; }
-
-      /* Hiring grid: stack */
-      .hiring-grid { grid-template-columns: 1fr !important; }
-
-      /* BM grid: stack */
-      .bm-grid { grid-template-columns: 1fr !important; }
+    .hiring-inner {
+      max-width: 1080px;
+      margin: 0 auto;
     }
 
-    /* ── 480px ── */
-    @media (max-width: 480px) {
-      .hero-stats { grid-template-columns: 1fr 1fr !important; }
-
-      .benefit-card { width: 88vw !important; }
-      .process-card { width: 88vw !important; }
-      .finish-card { width: 80vw !important; }
-      .spec-card { width: 56vw !important; }
-      .investor-card-item { width: 88vw !important; }
-
-      .fin-summary { grid-template-columns: 1fr 1fr !important; }
-
-      /* CTA buttons full width */
-      #cta .btn-primary,
-      #cta .btn-outline { width: 100%; justify-content: center; padding: 16px 20px !important; display: block; text-align: center; }
-
-      /* Investor section buttons full width */
-      #investor .btn-primary,
-      #investor .btn-outline { width: 100%; justify-content: center; padding: 14px 20px !important; display: block; text-align: center; }
-
-      .cta-contact { font-size: 0.88rem; }
-
-      /* Compact patent callout */
-      #finishes, #precedent, #business-model, #manufacturing, #gtm, #financials, #funding, #team-hiring {
-        padding: 60px 16px;
-      }
+    .hiring-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
     }
-/* ══ PORTRAIT INTRO VIDEO — FIXED ══ */
-#intro-overlay {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.85);
-}
 
-#intro-video {
-  width: auto;
-  height: 85vh;
-  max-height: 85vh;
-  max-width: 90vw;
-  object-fit: contain;
-  border-radius: 16px;
-}
+    .hiring-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 28px;
+    }
 
-@media (max-width: 768px) {
-  #intro-video {
-    height: auto;
-    width: 88vw;
-    max-height: 80vh;
-    border-radius: 12px;
-  }
-}
+    .hiring-card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+    }
+
+    .hiring-card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 10px;
+    }
+
+    .hiring-card-desc {
+      font-size: 0.88rem;
+      color: #7eb3e0;
+      line-height: 1.6;
+    }
+
+    .hiring-commitment {
+      margin-top: 40px;
+      background: rgba(59, 142, 232, 0.07);
+      border: 1px solid rgba(59, 142, 232, 0.2);
+      border-radius: 16px;
+      padding: 32px;
+    }
+
+    .hiring-commitment p {
+      color: #c8d8e8;
+      font-size: 0.97rem;
+      line-height: 1.75;
+      margin: 0;
+    }
   </style>
 </head>
 
 <body>
 
+  <!-- Skip link for accessibility -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
- <div id="intro-backdrop" role="dialog" aria-label="Introduction video" aria-modal="true"></div>
-  <div id="intro-overlay" style="position:fixed !important;top:0 !important;left:0 !important;width:100vw !important;height:100vh !important;z-index:99999 !important;display:flex !important;align-items:center !important;justify-content:center !important;background:rgba(0,0,0,0.9) !important;flex-direction:column !important;">
-    <video id="intro-video" playsinline webkit-playsinline autoplay muted aria-label="Steel-One introduction video" style="width:auto !important;height:82vh !important;max-width:90vw !important;max-height:82vh !important;object-fit:contain !important;border-radius:16px !important;display:block !important;">
-      <source src="video/intro.mp4" type="video/mp4" />
+  <!-- Video popup backdrop -->
+  <div id="intro-backdrop" role="dialog" aria-label="Introduction video" aria-modal="true"></div>
+  <div id="intro-overlay">
+    <video id="intro-video" playsinline webkit-playsinline autoplay muted aria-label="Steel-One introduction video">
+      <source src="video/intro1.mp4" type="video/mp4" />
       <source src="video/intro.webm" type="video/webm" />
     </video>
     <button class="intro-skip" id="introSkip" aria-label="Close introduction video" title="Close">&#x2715;</button>
@@ -723,12 +700,15 @@
     <div class="intro-progress" id="introProgress" role="progressbar" aria-label="Video progress"></div>
   </div>
 
+  <!-- Mobile CTA Bar -->
   <div class="mobile-cta-bar" role="navigation" aria-label="Quick contact">
     <a href="tel:3109995015" class="mobile-cta-btn mobile-cta-call">📞 Call Now</a>
     <a href="mailto:1000pacific@gmail.com" class="mobile-cta-btn mobile-cta-email">✉ Email Us</a>
   </div>
 
-  <div class="chatbot-bubble" id="chatBubble" role="button" aria-label="Open chat assistant" tabindex="0" title="Talk to our concierge">💬</div>
+  <!-- Chatbot -->
+  <div class="chatbot-bubble" id="chatBubble" role="button" aria-label="Open chat assistant" tabindex="0"
+    title="Talk to our concierge">💬</div>
   <div class="chatbot-panel" id="chatPanel" role="dialog" aria-label="Steel-One Chat Assistant" aria-hidden="true">
     <div class="chat-header">
       <div class="chat-avatar" aria-hidden="true">🏗️</div>
@@ -760,26 +740,10 @@
       <li><a href="#team">Team</a></li>
     </ul>
     <a href="#cta" class="nav-cta">Get My Quote</a>
-    <!-- Hamburger (mobile only) -->
-    <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
   </nav>
 
-  <!-- Mobile drawer -->
-  <div class="nav-mobile-drawer" id="navDrawer" aria-label="Mobile navigation" role="dialog" aria-modal="true">
-    <a href="#comparison" class="drawer-link">System</a>
-    <a href="#fire" class="drawer-link">Fire Safety</a>
-    <a href="#calculator" class="drawer-link">ROI</a>
-    <a href="#investor" class="drawer-link">Investors</a>
-    <a href="#market" class="drawer-link">Market</a>
-    <a href="#team" class="drawer-link">Team</a>
-    <a href="#cta" class="nav-cta-mobile">Get My Quote</a>
-  </div>
-
+  <!-- ─── HERO ─── -->
   <main id="main-content">
-
-    <!-- ─── HERO ─── -->
     <section id="hero" aria-label="Hero">
       <div class="hero-bg" aria-hidden="true">
         <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1800&q=80&fit=crop" alt="" />
@@ -790,13 +754,15 @@
       <div class="hero-content">
         <div class="hero-badge">
           <span class="hero-badge-dot" aria-hidden="true"></span>
-          Utility &amp; Design Patents Pending &nbsp;·&nbsp; Built for California Rebuild &nbsp;·&nbsp; Developer &amp; Builder Ready
+          Utility &amp; Design Patents Pending &nbsp;·&nbsp; Built for California Rebuild &nbsp;·&nbsp; Developer &amp;
+          Builder Ready
         </div>
         <h1 class="hero-title">
           BUILD IN <span class="blue">WEEKS.</span><br />
           NOT <span class="fire">YEARS.</span>
         </h1>
-        <p class="hero-sub">The STEEL-ONE system delivers faster, fire-resistant, and cost-controlled construction using precision-engineered steel blocks — installed by just two workers.</p>
+        <p class="hero-sub">The STEEL-ONE system delivers faster, fire-resistant, and cost-controlled construction using
+          precision-engineered steel blocks — installed by just two workers.</p>
         <div class="hero-actions">
           <a href="#cta" class="btn-primary">👉 Get My Project Quote</a>
           <a href="#comparison" class="btn-outline">👉 See How It Works</a>
@@ -825,7 +791,8 @@
           <div class="stat-label">Combustion Risk</div>
         </div>
       </div>
-      <p style="text-align:center;color:#7eb3e0;font-size:0.82rem;margin-top:10px;letter-spacing:0.05em;">Limited 2026 project slots available</p>
+      <p style="text-align:center;color:#7eb3e0;font-size:0.82rem;margin-top:10px;letter-spacing:0.05em;">Limited 2026
+        project slots available</p>
     </section>
 
     <!-- TICKER -->
@@ -854,13 +821,19 @@
 
     <!-- PATENT CALLOUT -->
     <div style="background:#07111f;padding:60px 24px;">
-      <div class="patent-callout-inner" style="max-width:700px;margin:0 auto;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:28px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
-        <div style="flex:1;min-width:200px;">
-          <div style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#3b8ee8;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Utility &amp; Design Patents Pending</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">STEEL-ONE Block System</div>
-          <div style="font-size:0.88rem;color:#7eb3e0;line-height:1.5;">Precision-engineered interlocking steel block — the core of the STEEL-ONE construction system. Patent applications filed.</div>
+      <div
+        style="max-width:700px;margin:0 auto;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:28px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:220px;">
+          <div
+            style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#3b8ee8;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">
+            Utility &amp; Design Patents Pending</div>
+          <div
+            style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">
+            STEEL-ONE Block System</div>
+          <div style="font-size:0.88rem;color:#7eb3e0;line-height:1.5;">Precision-engineered interlocking steel block —
+            the core of the STEEL-ONE construction system. Patent applications filed.</div>
         </div>
-        <div class="patent-callout-img" style="flex-shrink:0;background:#fff;border-radius:12px;padding:12px;width:200px;">
+        <div style="flex-shrink:0;background:#fff;border-radius:12px;padding:12px;width:220px;">
           <img src="interior/1.png" alt="STEEL-ONE patent technical drawing — interlocking steel block system"
             style="width:100%;display:block;cursor:zoom-in;"
             onclick="document.getElementById('patent-lightbox').style.display='flex'" />
@@ -873,14 +846,30 @@
       <p class="gallery-label">The CUBE comes in several sizes and exterior finishes</p>
       <div class="gallery-track">
         <div class="gallery-strip" aria-label="Exterior building gallery">
-          <div class="gallery-photo"><img src="img/3.png" alt="Contemporary Single Family Steel Home" /><div class="gallery-photo-label">Contemporary Single Family</div></div>
-          <div class="gallery-photo"><img src="img/6.png" alt="Open Plan Steel Architecture" /><div class="gallery-photo-label">Open Plan Architecture</div></div>
-          <div class="gallery-photo"><img src="img/4.png" alt="Modular Steel Design" /><div class="gallery-photo-label">Modular Steel Design</div></div>
-          <div class="gallery-photo"><img src="img/11.png" alt="Modern Steel Home" /><div class="gallery-photo-label">Modular Steel Design</div></div>
-          <div class="gallery-photo"><img src="img/3.png" alt="" aria-hidden="true" /><div class="gallery-photo-label">Contemporary Single Family</div></div>
-          <div class="gallery-photo"><img src="img/6.png" alt="" aria-hidden="true" /><div class="gallery-photo-label">Open Plan Architecture</div></div>
-          <div class="gallery-photo"><img src="img/4.png" alt="" aria-hidden="true" /><div class="gallery-photo-label">Modular Steel Design</div></div>
-          <div class="gallery-photo"><img src="img/11.png" alt="" aria-hidden="true" /><div class="gallery-photo-label">Modular Steel Design</div></div>
+          <div class="gallery-photo"><img src="img/3.png" alt="Contemporary Single Family Steel Home" />
+            <div class="gallery-photo-label">Contemporary Single Family</div>
+          </div>
+          <div class="gallery-photo"><img src="img/6.png" alt="Open Plan Steel Architecture" />
+            <div class="gallery-photo-label">Open Plan Architecture</div>
+          </div>
+          <div class="gallery-photo"><img src="img/4.png" alt="Modular Steel Design" />
+            <div class="gallery-photo-label">Modular Steel Design</div>
+          </div>
+          <div class="gallery-photo"><img src="img/11.png" alt="Modern Steel Home" />
+            <div class="gallery-photo-label">Modular Steel Design</div>
+          </div>
+          <div class="gallery-photo"><img src="img/3.png" alt="" aria-hidden="true" />
+            <div class="gallery-photo-label">Contemporary Single Family</div>
+          </div>
+          <div class="gallery-photo"><img src="img/6.png" alt="" aria-hidden="true" />
+            <div class="gallery-photo-label">Open Plan Architecture</div>
+          </div>
+          <div class="gallery-photo"><img src="img/4.png" alt="" aria-hidden="true" />
+            <div class="gallery-photo-label">Modular Steel Design</div>
+          </div>
+          <div class="gallery-photo"><img src="img/11.png" alt="" aria-hidden="true" />
+            <div class="gallery-photo-label">Modular Steel Design</div>
+          </div>
         </div>
       </div>
     </div>
@@ -890,42 +879,116 @@
       <div class="process-header reveal">
         <span class="section-label">The Problem</span>
         <h2 class="section-title">Construction Is <span class="text-blue">Broken</span></h2>
-        <p class="section-body" style="max-width:520px;margin:16px auto 0;">Delays. Budget overruns. Labor shortages. Fire risk. Traditional construction isn't just slow — it's unpredictable. There's a smarter way to build.</p>
+        <p class="section-body" style="max-width:520px;margin:16px auto 0;">Delays. Budget overruns. Labor shortages.
+          Fire risk. Traditional construction isn't just slow — it's unpredictable. There's a smarter way to build.</p>
       </div>
-      <p class="swipe-hint" style="padding:0 24px;">Swipe to see more →</p>
       <div class="process-grid" role="list">
         <div class="process-card reveal" role="listitem">
           <div class="process-icon" aria-hidden="true">⏳</div>
           <div class="process-num">01</div>
           <div class="process-title">12–24 Month Timelines</div>
-          <p class="process-desc">Traditional builds drag on for over a year, leaving capital tied up and projects exposed to endless delays.</p>
+          <p class="process-desc">Traditional builds drag on for over a year, leaving capital tied up and projects
+            exposed to endless delays.</p>
         </div>
         <div class="process-card reveal reveal-d1" role="listitem">
           <div class="process-icon" aria-hidden="true">👷</div>
           <div class="process-num">02</div>
           <div class="process-title">Too Many Subcontractors</div>
-          <p class="process-desc">Coordinating multiple crews and trades creates confusion, miscommunication, and costly rework on every project.</p>
+          <p class="process-desc">Coordinating multiple crews and trades creates confusion, miscommunication, and costly
+            rework on every project.</p>
         </div>
         <div class="process-card reveal reveal-d2" role="listitem">
           <div class="process-icon" aria-hidden="true">💸</div>
           <div class="process-num">03</div>
           <div class="process-title">Spiraling Costs</div>
-          <p class="process-desc">Labor shortages and material volatility push budgets off track — often before the foundation is even poured.</p>
+          <p class="process-desc">Labor shortages and material volatility push budgets off track — often before the
+            foundation is even poured.</p>
         </div>
         <div class="process-card reveal reveal-d3" role="listitem">
           <div class="process-icon" aria-hidden="true">🔥</div>
           <div class="process-num">04</div>
           <div class="process-title">Increasing Wildfire Exposure</div>
-          <p class="process-desc">Wood-frame homes ignite in minutes. As fire risk grows across California, the materials we build with have to change.</p>
+          <p class="process-desc">Wood-frame homes ignite in minutes. As fire risk grows across California, the
+            materials we build with have to change.</p>
         </div>
         <div class="process-card reveal reveal-d4" role="listitem">
           <div class="process-icon" aria-hidden="true">✅</div>
           <div class="process-num">05</div>
           <div class="process-title">There's a Smarter Way</div>
-          <p class="process-desc">STEEL-ONE replaces outdated methods with a factory-engineered system — pre-engineered blocks, minimal labor, precision assembly in weeks.</p>
+          <p class="process-desc">STEEL-ONE replaces outdated methods with a factory-engineered system — pre-engineered
+            blocks, minimal labor, precision assembly in weeks.</p>
         </div>
       </div>
     </section>
+
+    <!-- SOLUTION SECTION -->
+    <style>
+      #cta {
+        position: relative;
+        padding: 100px 24px;
+        overflow: hidden;
+        color: #fff;
+        text-align: center;
+      }
+
+      .cta-inner {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .cta-title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        line-height: 1.1;
+        margin-bottom: 24px;
+      }
+
+      .cta-sub {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+        opacity: 0.9;
+        line-height: 1.6;
+      }
+
+      .cta-contacts {
+        margin-top: 48px;
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+        flex-wrap: wrap;
+        font-size: 0.95rem;
+      }
+
+      .cta-contact {
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: opacity 0.2s;
+      }
+
+      .cta-contact:hover {
+        opacity: 0.8;
+      }
+
+      @media (max-width: 600px) {
+        #cta {
+          padding: 60px 20px;
+        }
+
+        .cta-contacts {
+          flex-direction: column;
+          gap: 16px;
+          align-items: center;
+        }
+
+        .btn-primary,
+        .btn-outline {
+          width: 100%;
+          padding: 16px 20px !important;
+        }
+      }
+    </style>
 
     <!-- GALLERY: INTERIORS -->
     <div class="gallery-section">
@@ -942,20 +1005,25 @@
       </div>
     </div>
 
-    <!-- COMPARISON -->
+    <!-- COMPARISON (replaces scrollytelling) -->
     <section id="comparison">
       <div class="comparison-header reveal">
         <span class="section-label">The Shift</span>
         <h2 class="section-title">From 18 Months<br /><span class="text-blue">→ 2 Weeks.</span></h2>
-        <p class="section-body" style="max-width:520px;margin:16px auto 0;">See how the STEEL-ONE system compares — choose a view below.</p>
+        <p class="section-body" style="max-width:520px;margin:16px auto 0;">See how the STEEL-ONE system compares —
+          choose a view below.</p>
       </div>
 
       <div class="comparison-tabs" role="tablist" aria-label="Comparison views">
-        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-compare" data-tab="tab-compare">Side-by-Side</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-product" data-tab="tab-product">The Product</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-specs" data-tab="tab-specs">By the Numbers</button>
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-compare"
+          data-tab="tab-compare">Side-by-Side</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-product" data-tab="tab-product">The
+          Product</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-specs" data-tab="tab-specs">By the
+          Numbers</button>
       </div>
 
+      <!-- Tab 1: Compare -->
       <div class="tab-content active" id="tab-compare" role="tabpanel">
         <div class="compare-split">
           <div class="compare-col bad">
@@ -969,7 +1037,9 @@
             </ul>
             <div class="compare-highlight bad" aria-label="Traditional build timeline: 18 months">18 MONTHS</div>
           </div>
-          <div class="compare-divider"><div class="vs" aria-hidden="true">VS</div></div>
+          <div class="compare-divider">
+            <div class="vs" aria-hidden="true">VS</div>
+          </div>
           <div class="compare-col good">
             <span class="compare-badge good">STEEL-ONE</span>
             <div class="compare-col-title">Steel Block System</div>
@@ -986,37 +1056,55 @@
           <a href="#calculator" class="btn-primary">👉 Calculate My Time Savings</a>
         </div>
       </div>
-
       <div class="tab-content" id="tab-product" role="tabpanel">
         <div class="block-layout">
           <div class="block-text">
             <span class="section-label">The Product</span>
             <h3>The Metal Block.<br /><span class="text-blue">Everything built-in.</span></h3>
-            <p class="section-body" style="margin-top:12px;">STEEL-ONE replaces outdated building methods with a streamlined, factory-engineered system that simplifies every stage of construction. Pre-engineered steel blocks with integrated plumbing and electrical pathways — assembled in weeks by a minimal crew.</p>
+            <p class="section-body" style="margin-top:12px;">STEEL-ONE replaces outdated building methods with a
+              streamlined, factory-engineered system that simplifies every stage of construction. Pre-engineered steel
+              blocks with integrated plumbing and electrical pathways — assembled in weeks by a minimal crew.</p>
             <div class="block-features">
               <div class="block-feat">
                 <div class="feat-icon" aria-hidden="true">🔩</div>
-                <div class="feat-text"><strong>Precision Recycled Steel Shell</strong><span>Built from durable recycled steel designed for long-term use.</span></div>
+                <div class="feat-text">
+                  <strong>Precision Recycled Steel Shell</strong>
+                  <span>Built from durable recycled steel designed for long-term use.</span>
+                </div>
               </div>
               <div class="block-feat">
                 <div class="feat-icon" aria-hidden="true">💧</div>
-                <div class="feat-text"><strong>Integrated Plumbing Channels</strong><span>Plumbing pathways are already built in, reducing on-site work.</span></div>
+                <div class="feat-text">
+                  <strong>Integrated Plumbing Channels</strong>
+                  <span>Plumbing pathways are already built in, reducing on-site work.</span>
+                </div>
               </div>
               <div class="block-feat">
                 <div class="feat-icon" aria-hidden="true">⚡</div>
-                <div class="feat-text"><strong>Pre-run Electrical Conduit</strong><span>Electrical routing is planned ahead, not figured out during the build.</span></div>
+                <div class="feat-text">
+                  <strong>Pre-run Electrical Conduit</strong>
+                  <span>Electrical routing is planned ahead, not figured out during the build.</span>
+                </div>
               </div>
               <div class="block-feat">
                 <div class="feat-icon" aria-hidden="true">🌡️</div>
-                <div class="feat-text"><strong>Built-in Insulation Core</strong><span>Insulation is already integrated for consistent performance from day one.</span></div>
+                <div class="feat-text">
+                  <strong>Built-in Insulation Core</strong>
+                  <span>Insulation is already integrated for consistent performance from day one.</span>
+                </div>
               </div>
             </div>
-            <div style="margin-top:28px;padding:20px 24px;background:rgba(59,142,232,0.1);border-left:3px solid #3b8ee8;border-radius:0 12px 12px 0;">
-              <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:600;color:#fff;letter-spacing:0.03em;">Think LEGO, but for real buildings—durable, scalable, and beautiful.</p>
+            <!-- LEGO quote -->
+            <div
+              style="margin-top:28px;padding:20px 24px;background:rgba(59,142,232,0.1);border-left:3px solid #3b8ee8;border-radius:0 12px 12px 0;">
+              <p
+                style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:600;color:#fff;letter-spacing:0.03em;">
+                Think LEGO, but for real buildings—durable, scalable, and beautiful.</p>
             </div>
           </div>
           <div class="block-visual">
-            <div class="block-diagram-box" aria-label="Block layer diagram: Steel shell, plumbing, electrical, insulation">
+            <div class="block-diagram-box"
+              aria-label="Block layer diagram: Steel shell, plumbing, electrical, insulation">
               <div class="blayer outer">STEEL SHELL</div>
               <div class="blayer plumb">PLUMBING</div>
               <div class="blayer elec">ELECTRICAL</div>
@@ -1024,60 +1112,115 @@
             </div>
           </div>
         </div>
+        <!-- Photo grid after LEGO line -->
         <div style="margin-top:48px;">
-          <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;color:#7eb3e0;margin-bottom:20px;font-weight:600;text-align:center;">What You Can Build</div>
+          <div
+            style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;color:#7eb3e0;margin-bottom:20px;font-weight:600;text-align:center;">
+            What You Can Build</div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;">
-            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/12.png" alt="Modern STEEL-ONE home with pool" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/8.png" alt="Luxury block-facade steel home" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/9.png" alt="Compact modular cube home" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/10.png" alt="Stacked cube modern home" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/11.png" alt="White cube home with pool" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/12.png"
+                alt="Modern STEEL-ONE home with pool" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            </div>
+            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/8.png"
+                alt="Luxury block-facade steel home" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            </div>
+            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/9.png"
+                alt="Compact modular cube home" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/10.png"
+                alt="Stacked cube modern home" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/11.png"
+                alt="White cube home with pool" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
         </div>
       </div>
 
+      <!-- Tab 3: Specs -->
       <div class="tab-content" id="tab-specs" role="tabpanel">
-        <p class="swipe-hint" style="padding:0 24px;">Swipe to see more →</p>
         <div class="specs-grid">
-          <div class="spec-card"><div class="spec-icon" aria-hidden="true">⚡</div><div class="spec-val">75%</div><div class="spec-name">Time Savings</div></div>
-          <div class="spec-card"><div class="spec-icon" aria-hidden="true">👤</div><div class="spec-val">2</div><div class="spec-name">People to Build</div></div>
-          <div class="spec-card"><div class="spec-icon" aria-hidden="true">📅</div><div class="spec-val">2 wks</div><div class="spec-name">Full Home Assembly</div></div>
-          <div class="spec-card"><div class="spec-icon" aria-hidden="true">🔥</div><div class="spec-val">0%</div><div class="spec-name">Combustibility</div></div>
-          <div class="spec-card"><div class="spec-icon" aria-hidden="true">♻️</div><div class="spec-val">100%</div><div class="spec-name">Recyclable Steel</div></div>
-          <div class="spec-card"><div class="spec-icon" aria-hidden="true">🌿</div><div class="spec-val">LEED</div><div class="spec-name">Eligible</div></div>
+          <div class="spec-card">
+            <div class="spec-icon" aria-hidden="true">⚡</div>
+            <div class="spec-val">75%</div>
+            <div class="spec-name">Time Savings</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-icon" aria-hidden="true">👤</div>
+            <div class="spec-val">2</div>
+            <div class="spec-name">People to Build</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-icon" aria-hidden="true">📅</div>
+            <div class="spec-val">2 wks</div>
+            <div class="spec-name">Full Home Assembly</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-icon" aria-hidden="true">🔥</div>
+            <div class="spec-val">0%</div>
+            <div class="spec-name">Combustibility</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-icon" aria-hidden="true">♻️</div>
+            <div class="spec-val">100%</div>
+            <div class="spec-name">Recyclable Steel</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-icon" aria-hidden="true">🌿</div>
+            <div class="spec-val">LEED</div>
+            <div class="spec-name">Eligible</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- PRECEDENT -->
+    <!-- ── NEW: REAL-WORLD PRECEDENT ── -->
     <section id="precedent" aria-label="Real-world precedent">
       <div class="precedent-inner">
         <span class="section-label reveal" style="display:inline-flex;margin-bottom:16px;">Real-World Precedent</span>
-        <h2 class="section-title reveal reveal-d1">Global Proof of<br /><span class="text-blue">Metal Modular Construction</span></h2>
+        <h2 class="section-title reveal reveal-d1">Global Proof of<br /><span class="text-blue">Metal Modular
+            Construction</span></h2>
         <div class="precedent-layout">
           <div class="precedent-text reveal reveal-d2">
-            <p>Steel-based modular construction isn't a concept — it's already been proven on the world stage. Micro-homes constructed from steel box units in Japan by architect Yasuhiro demonstrate the global viability of metal modular construction.</p>
-            <p>The <strong style="color:#fff;">"Cell Brick"</strong> project shows that precision-engineered steel units can be assembled into full living spaces — rapidly, repeatably, and beautifully. STEEL-ONE takes this proven concept and scales it for the American residential market.</p>
-            <p>What works for micro-housing in Japan works for full-scale homes in California — with the added advantages of fire resistance, earthquake performance, and speed that the US market demands right now.</p>
-            <a href="#cta" class="btn-primary" style="display:inline-flex;margin-top:24px;font-size:0.9rem;padding:14px 28px;">👉 See the STEEL-ONE System</a>
+            <p>Steel-based modular construction isn't a concept — it's already been proven on the world stage.
+              Micro-homes constructed from steel box units in Japan by architect Yasuhiro demonstrate the global
+              viability of metal modular construction.</p>
+            <p>The <strong style="color:#fff;">"Cell Brick"</strong> project shows that precision-engineered steel units
+              can be assembled into full living spaces — rapidly, repeatably, and beautifully. STEEL-ONE takes this
+              proven concept and scales it for the American residential market.</p>
+            <p>What works for micro-housing in Japan works for full-scale homes in California — with the added
+              advantages of fire resistance, earthquake performance, and speed that the US market demands right now.</p>
+            <a href="#cta" class="btn-primary"
+              style="display:inline-flex;margin-top:24px;font-size:0.9rem;padding:14px 28px;">👉 See the STEEL-ONE
+              System</a>
           </div>
           <div class="reveal reveal-d3">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
               <span style="font-size:1.4rem;">🇯🇵</span>
               <div>
-                <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.06em;">"Cell Brick" — Japan</div>
+                <div
+                  style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.06em;">
+                  "Cell Brick" — Japan</div>
                 <div style="font-size:0.8rem;color:#7eb3e0;">Architect Yasuhiro Yamashita</div>
               </div>
               <span class="precedent-proof-tag" style="margin-left:auto;">Global Proof</span>
             </div>
-            <div class="precedent-photo-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
-              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/13.png" alt="Cell Brick exterior Japan" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/15.png" alt="Cell Brick interior white grid" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/16.png" alt="Cell Brick interior blue grid" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/14.png" alt="Cell Brick interior living space" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <!-- 2x2 photo grid -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/13.png"
+                  alt="Cell Brick exterior Japan" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              </div>
+              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/15.png"
+                  alt="Cell Brick interior white grid" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              </div>
+              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/16.png"
+                  alt="Cell Brick interior blue grid" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              </div>
+              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/14.png"
+                  alt="Cell Brick interior living space"
+                  style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
             </div>
-            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;text-align:center;">
-              <div style="color:#c8d8e8;font-size:0.9rem;line-height:1.6;">Metal modular construction has already proven viable across cultures, climates, and markets — STEEL-ONE brings it home.</div>
+            <div
+              style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;text-align:center;">
+              <div style="color:#c8d8e8;font-size:0.9rem;line-height:1.6;">Metal modular construction has already proven
+                viable across cultures, climates, and markets — STEEL-ONE brings it home.</div>
             </div>
           </div>
         </div>
@@ -1094,23 +1237,31 @@
         <div class="fire-left reveal">
           <span class="section-label fire-label">Fire Safety</span>
           <h2 class="fire-title">Steel<br />Doesn't<br /><span class="accent">Burn.</span></h2>
-          <p class="fire-sub">Recent California wildfires destroyed thousands of homes in hours. <strong>Pacific Palisades, Malibu, Altadena</strong> — over 16,000 structures gone. STEEL-ONE is designed for this reality — a system that doesn't rely on materials that catch fire.<br /><br /><em>When everything else burns — steel stands.</em></p>
+          <p class="fire-sub">Recent California wildfires destroyed thousands of homes in hours. <strong>
+              Pacific Palisades, Malibu, Altadena</strong> — over 16,000 structures gone. STEEL-ONE is designed for this
+            reality
+            — a system that doesn't rely on materials that catch fire.<br /><br /><em>When everything else burns — steel
+              stands.</em></p>
           <div class="fire-facts">
             <div class="fire-fact reveal reveal-d1">
               <div class="fire-fact-icon" aria-hidden="true">🔥</div>
-              <div class="fire-fact-body"><strong>Non-combustible material</strong><span>Steel won't ignite or contribute to the spread of fire — ever.</span></div>
+              <div class="fire-fact-body"><strong>Non-combustible material</strong><span>Steel won't ignite or
+                  contribute to the spread of fire — ever.</span></div>
             </div>
             <div class="fire-fact reveal reveal-d2">
               <div class="fire-fact-icon" aria-hidden="true">💨</div>
-              <div class="fire-fact-body"><strong>No ignition from embers</strong><span>Unlike wood, steel blocks don't catch from airborne embers — a key wildfire entry point.</span></div>
+              <div class="fire-fact-body"><strong>No ignition from embers</strong><span>Unlike wood, steel blocks don't
+                  catch from airborne embers — a key wildfire entry point.</span></div>
             </div>
             <div class="fire-fact reveal reveal-d3">
               <div class="fire-fact-icon" aria-hidden="true">🏗️</div>
-              <div class="fire-fact-body"><strong>Maintains structural integrity longer</strong><span>More time to respond, less risk of total collapse or loss.</span></div>
+              <div class="fire-fact-body"><strong>Maintains structural integrity longer</strong><span>More time to
+                  respond, less risk of total collapse or loss.</span></div>
             </div>
             <div class="fire-fact reveal reveal-d4">
               <div class="fire-fact-icon" aria-hidden="true">🏘️</div>
-              <div class="fire-fact-body"><strong>Built for high-risk zones</strong><span>The most reliable option when rebuilding in California's fire-prone areas.</span></div>
+              <div class="fire-fact-body"><strong>Built for high-risk zones</strong><span>The most reliable option when
+                  rebuilding in California's fire-prone areas.</span></div>
             </div>
           </div>
           <a href="#cta" class="fire-cta reveal reveal-d4">👉 See Fire Performance →</a>
@@ -1123,17 +1274,46 @@
               <div class="ch-steel">STEEL-ONE</div>
               <div class="ch-wood">Wood Frame</div>
             </div>
-            <div class="compare-row"><div class="cr-label">Combustible?</div><div class="cr-good">✗ No</div><div class="cr-bad">✓ Yes</div></div>
-            <div class="compare-row"><div class="cr-label">Ignites from ember?</div><div class="cr-good">✗ No</div><div class="cr-bad">✓ Yes</div></div>
-            <div class="compare-row"><div class="cr-label">Structural collapse in fire</div><div class="cr-good">Slow</div><div class="cr-bad">Fast</div></div>
-            <div class="compare-row"><div class="cr-label">Termite / rot risk</div><div class="cr-good">None</div><div class="cr-bad">High</div></div>
-            <div class="compare-row"><div class="cr-label">Insurance premium</div><div class="cr-good">Lower</div><div class="cr-bad">Higher</div></div>
-            <div class="compare-row"><div class="cr-label">Rebuild timeline</div><div class="cr-good">1–2 weeks</div><div class="cr-bad">1–2 years</div></div>
+            <div class="compare-row">
+              <div class="cr-label">Combustible?</div>
+              <div class="cr-good">✗ No</div>
+              <div class="cr-bad">✓ Yes</div>
+            </div>
+            <div class="compare-row">
+              <div class="cr-label">Ignites from ember?</div>
+              <div class="cr-good">✗ No</div>
+              <div class="cr-bad">✓ Yes</div>
+            </div>
+            <div class="compare-row">
+              <div class="cr-label">Structural collapse in fire</div>
+              <div class="cr-good">Slow</div>
+              <div class="cr-bad">Fast</div>
+            </div>
+            <div class="compare-row">
+              <div class="cr-label">Termite / rot risk</div>
+              <div class="cr-good">None</div>
+              <div class="cr-bad">High</div>
+            </div>
+            <div class="compare-row">
+              <div class="cr-label">Insurance premium</div>
+              <div class="cr-good">Lower</div>
+              <div class="cr-bad">Higher</div>
+            </div>
+            <div class="compare-row">
+              <div class="cr-label">Rebuild timeline</div>
+              <div class="cr-good">1–2 weeks</div>
+              <div class="cr-bad">1–2 years</div>
+            </div>
           </div>
           <div class="rebuild-card reveal reveal-d3">
-            <div class="rebuild-card-hd"><span aria-hidden="true">🏠</span><strong>Los Angeles Rebuild Initiative</strong></div>
-            <p>Over <strong>16,000 structures</strong> were destroyed in the January 2025 LA wildfires. Homeowners and developers in <strong>Pacific Palisades, Malibu, Altadena</strong> are rebuilding now. STEEL-ONE offers the fastest, safest, most fire-resistant path to a permanent home — assembled in weeks, not years.</p>
-            <a href="#cta" class="btn-primary" style="margin-top:20px;display:inline-block;font-size:0.88rem;padding:13px 24px;">Talk to Us About Rebuilding</a>
+            <div class="rebuild-card-hd"><span aria-hidden="true">🏠</span><strong>Los Angeles Rebuild
+                Initiative</strong></div>
+            <p>Over <strong>16,000 structures</strong> were destroyed in the January 2025 LA wildfires. Homeowners and
+              developers in <strong>Pacific Palisades, Malibu, Altadena</strong> are rebuilding now. STEEL-ONE offers
+              the fastest, safest, most fire-resistant path to a permanent home — assembled in weeks, not years.</p>
+            <a href="#cta" class="btn-primary"
+              style="margin-top:20px;display:inline-block;font-size:0.88rem;padding:13px 24px;">Talk to Us About
+              Rebuilding</a>
           </div>
         </div>
       </div>
@@ -1147,10 +1327,10 @@
           <h2 class="section-title reveal reveal-d1">Why Developers Are Switching</h2>
         </div>
         <div>
-          <p class="section-body reveal reveal-d2">Every advantage comes from one decision — building with a better material and a smarter system.</p>
+          <p class="section-body reveal reveal-d2">Every advantage comes from one decision — building with a better
+            material and a smarter system.</p>
         </div>
       </div>
-      <p class="swipe-hint" style="padding:0 24px;">Swipe to see more →</p>
       <div class="benefits-grid">
         <div class="benefit-card reveal">
           <div class="benefit-num" aria-hidden="true">01</div>
@@ -1162,7 +1342,8 @@
           <div class="benefit-num" aria-hidden="true">02</div>
           <div class="benefit-icon" aria-hidden="true">🔥</div>
           <div class="benefit-title">Fire-Resistant Construction</div>
-          <p class="benefit-desc">Non-combustible steel won't ignite, spread flames, or contribute to wildfire damage.</p>
+          <p class="benefit-desc">Non-combustible steel won't ignite, spread flames, or contribute to wildfire damage.
+          </p>
         </div>
         <div class="benefit-card reveal reveal-d2">
           <div class="benefit-num" aria-hidden="true">03</div>
@@ -1174,13 +1355,15 @@
           <div class="benefit-num" aria-hidden="true">04</div>
           <div class="benefit-icon" aria-hidden="true">🌱</div>
           <div class="benefit-title">Sustainable Materials</div>
-          <p class="benefit-desc">100% recyclable recycled steel. LEED eligible. Environmentally responsible from day one.</p>
+          <p class="benefit-desc">100% recyclable recycled steel. LEED eligible. Environmentally responsible from day
+            one.</p>
         </div>
         <div class="benefit-card reveal reveal-d2">
           <div class="benefit-num" aria-hidden="true">05</div>
           <div class="benefit-icon" aria-hidden="true">🌎</div>
           <div class="benefit-title">Earthquake-Ready</div>
-          <p class="benefit-desc">Steel's ductility and the block system's interlocking design provides superior seismic performance.</p>
+          <p class="benefit-desc">Steel's ductility and the block system's interlocking design provides superior seismic
+            performance.</p>
         </div>
         <div class="benefit-card reveal reveal-d3">
           <div class="benefit-num" aria-hidden="true">06</div>
@@ -1197,21 +1380,27 @@
         <div class="calc-header">
           <span class="section-label reveal" style="display:inline-flex;">ROI Calculator</span>
           <h2 class="section-title reveal reveal-d1">Faster Builds = <span class="text-blue">Faster Returns</span></h2>
-          <p class="section-body reveal reveal-d2" style="max-width:480px;margin:12px auto 0;">Every month saved is money earned. Adjust the sliders to estimate how much time and labor you could save with STEEL-ONE.</p>
+          <p class="section-body reveal reveal-d2" style="max-width:480px;margin:12px auto 0;">Every month saved is
+            money earned. Adjust the sliders to estimate how much time and labor you could save with STEEL-ONE.</p>
         </div>
         <div class="calc-layout reveal reveal-d2">
           <div class="calc-inputs">
             <div class="calc-field">
               <div class="calc-label">Project Size (sq ft) <span id="sqftVal">2,500</span></div>
-              <input type="range" class="calc-slider" id="sqftSlider" min="500" max="10000" step="100" value="2500" aria-label="Project size in square feet" aria-valuemin="500" aria-valuemax="10000" aria-valuenow="2500" />
+              <input type="range" class="calc-slider" id="sqftSlider" min="500" max="10000" step="100" value="2500"
+                aria-label="Project size in square feet" aria-valuemin="500" aria-valuemax="10000"
+                aria-valuenow="2500" />
             </div>
             <div class="calc-field">
               <div class="calc-label">Number of Units <span id="unitsVal">1</span></div>
-              <input type="range" class="calc-slider" id="unitsSlider" min="1" max="50" step="1" value="1" aria-label="Number of units" aria-valuemin="1" aria-valuemax="50" aria-valuenow="1" />
+              <input type="range" class="calc-slider" id="unitsSlider" min="1" max="50" step="1" value="1"
+                aria-label="Number of units" aria-valuemin="1" aria-valuemax="50" aria-valuenow="1" />
             </div>
             <div class="calc-field">
               <div class="calc-label">Traditional Labor Cost / hr <span id="laborVal">$85</span></div>
-              <input type="range" class="calc-slider" id="laborSlider" min="40" max="200" step="5" value="85" aria-label="Traditional labor cost per hour" aria-valuemin="40" aria-valuemax="200" aria-valuenow="85" />
+              <input type="range" class="calc-slider" id="laborSlider" min="40" max="200" step="5" value="85"
+                aria-label="Traditional labor cost per hour" aria-valuemin="40" aria-valuemax="200"
+                aria-valuenow="85" />
             </div>
           </div>
           <div class="calc-results">
@@ -1235,12 +1424,18 @@
             </div>
             <div class="calc-cta">
               <div style="margin-bottom:20px;text-align:left;">
-                <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;color:#7eb3e0;margin-bottom:12px;font-weight:600;">With STEEL-ONE you can:</div>
+                <div
+                  style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;color:#7eb3e0;margin-bottom:12px;font-weight:600;">
+                  With STEEL-ONE you can:</div>
                 <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
-                  <li style="display:flex;align-items:center;gap:8px;font-size:0.92rem;color:#c8d8e8;"><span style="color:#3b8ee8;">✓</span> Accelerate project timelines</li>
-                  <li style="display:flex;align-items:center;gap:8px;font-size:0.92rem;color:#c8d8e8;"><span style="color:#3b8ee8;">✓</span> Reduce labor costs significantly</li>
-                  <li style="display:flex;align-items:center;gap:8px;font-size:0.92rem;color:#c8d8e8;"><span style="color:#3b8ee8;">✓</span> Increase project turnover</li>
-                  <li style="display:flex;align-items:center;gap:8px;font-size:0.92rem;color:#c8d8e8;"><span style="color:#3b8ee8;">✓</span> Improve insurance outlook</li>
+                  <li style="display:flex;align-items:center;gap:8px;font-size:0.92rem;color:#c8d8e8;"><span
+                      style="color:#3b8ee8;">✓</span> Accelerate project timelines</li>
+                  <li style="display:flex;align-items:center;gap:8px;font-size:0.92rem;color:#c8d8e8;"><span
+                      style="color:#3b8ee8;">✓</span> Reduce labor costs significantly</li>
+                  <li style="display:flex;align-items:center;gap:8px;font-size:0.92rem;color:#c8d8e8;"><span
+                      style="color:#3b8ee8;">✓</span> Increase project turnover</li>
+                  <li style="display:flex;align-items:center;gap:8px;font-size:0.92rem;color:#c8d8e8;"><span
+                      style="color:#3b8ee8;">✓</span> Improve insurance outlook</li>
                 </ul>
               </div>
               <a href="#cta" class="btn-primary">👉 Estimate My ROI →</a>
@@ -1255,8 +1450,11 @@
       <div class="market-layout">
         <div class="market-left">
           <span class="section-label reveal">Market Opportunity</span>
-          <h2 class="section-title reveal reveal-d1">A $2.1 Trillion Market<br />Ready for <span class="text-blue">Change</span></h2>
-          <p class="section-body reveal reveal-d2">Labor shortages are worsening. Insurance costs are rising. Fire risk is increasing. Demand is outpacing supply. STEEL-ONE is a scalable, repeatable building system designed for modern constraints.</p>
+          <h2 class="section-title reveal reveal-d1">A $2.1 Trillion Market<br />Ready for <span
+              class="text-blue">Change</span></h2>
+          <p class="section-body reveal reveal-d2">Labor shortages are worsening. Insurance costs are rising. Fire risk
+            is increasing. Demand is outpacing supply. STEEL-ONE is a scalable, repeatable building system designed for
+            modern constraints.</p>
           <div style="margin-top:28px;">
             <div class="section-label reveal reveal-d3" style="margin-bottom:12px;">Target Segments</div>
             <div class="segment-tags reveal reveal-d3">
@@ -1271,64 +1469,101 @@
         <div class="market-stats">
           <div class="market-stat reveal reveal-d1">
             <div class="market-big">1.48<sup>M</sup></div>
-            <p class="market-desc"><strong>New home permits</strong> authorized in 2024 — demand surging above pre-2008 historical averages.</p>
+            <p class="market-desc"><strong>New home permits</strong> authorized in 2024 — demand surging above pre-2008
+              historical averages.</p>
           </div>
           <div class="market-stat reveal reveal-d2">
             <div class="market-big">$2.1<sup>T</sup></div>
-            <p class="market-desc"><strong>Annual US construction market</strong> — a vast industry seeking efficiencies in materials, methods, and labor.</p>
+            <p class="market-desc"><strong>Annual US construction market</strong> — a vast industry seeking efficiencies
+              in materials, methods, and labor.</p>
           </div>
           <div class="market-stat reveal reveal-d3">
             <div class="market-big">16K<sup>+</sup></div>
-            <p class="market-desc"><strong>Homes lost in LA wildfires</strong> — each one a rebuild opportunity for STEEL-ONE's fastest, safest system.</p>
+            <p class="market-desc"><strong>Homes lost in LA wildfires</strong> — each one a rebuild opportunity for
+              STEEL-ONE's fastest, safest system.</p>
           </div>
         </div>
       </div>
     </section>
-
+ 
     <!-- INVESTOR / DEVELOPER SECTION -->
-    <section id="investor" style="background:#0a1628;padding:80px 24px;position:relative;overflow:hidden;">
-      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(30,80,160,0.18) 0%,transparent 70%);pointer-events:none;" aria-hidden="true"></div>
+    <section id="investor" style="background:#0a1628;padding:100px 24px;position:relative;overflow:hidden;">
+      <div
+        style="position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(30,80,160,0.18) 0%,transparent 70%);pointer-events:none;"
+        aria-hidden="true"></div>
       <div style="max-width:1080px;margin:0 auto;position:relative;z-index:1;">
-        <span class="section-label reveal" style="display:inline-flex;margin-bottom:20px;">Developer &amp; Investor Brief</span>
-        <h2 class="section-title reveal reveal-d1" style="font-size:clamp(2rem,4vw,3.2rem);max-width:760px;">Industrialized Construction for a <span class="text-blue">Supply-Constrained Market</span></h2>
-        <p class="section-body reveal reveal-d2" style="max-width:620px;margin:20px 0 32px;font-size:1.05rem;">STEEL-ONE enables developers to deliver housing faster, safer, and at scale — while reducing labor dependency and cost volatility.</p>
+        <span class="section-label reveal" style="display:inline-flex;margin-bottom:20px;">Developer &amp; Investor
+          Brief</span>
+        <h2 class="section-title reveal reveal-d1" style="font-size:clamp(2rem,4vw,3.2rem);max-width:760px;">
+          Industrialized Construction for a <span class="text-blue">Supply-Constrained Market</span></h2>
+        <p class="section-body reveal reveal-d2" style="max-width:620px;margin:20px 0 48px;font-size:1.05rem;">STEEL-ONE
+          enables developers to deliver housing faster, safer, and at scale — while reducing labor dependency and cost
+          volatility.</p>
 
-        <p class="swipe-hint">Swipe to see more →</p>
-        <div class="investor-cards-row" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-bottom:40px;">
-          <div class="investor-card-item reveal reveal-d1" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-bottom:56px;">
+          <!-- Why It Matters -->
+          <div class="reveal reveal-d1"
+            style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;">
             <div style="font-size:1.4rem;margin-bottom:14px;">📊</div>
-            <h3 style="font-size:1.1rem;color:#fff;margin:0 0 16px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.05em;text-transform:uppercase;">Why It Matters</h3>
+            <h3
+              style="font-size:1.1rem;color:#fff;margin:0 0 16px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.05em;text-transform:uppercase;">
+              Why It Matters</h3>
             <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
-              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span style="color:#e84040;flex-shrink:0;">↑</span> Labor shortages are worsening</li>
-              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span style="color:#e84040;flex-shrink:0;">↑</span> Insurance costs are rising</li>
-              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span style="color:#e84040;flex-shrink:0;">↑</span> Fire risk is increasing</li>
-              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span style="color:#e84040;flex-shrink:0;">↑</span> Demand is outpacing supply</li>
+              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span
+                  style="color:#e84040;flex-shrink:0;">↑</span> Labor shortages are worsening</li>
+              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span
+                  style="color:#e84040;flex-shrink:0;">↑</span> Insurance costs are rising</li>
+              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span
+                  style="color:#e84040;flex-shrink:0;">↑</span> Fire risk is increasing</li>
+              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span
+                  style="color:#e84040;flex-shrink:0;">↑</span> Demand is outpacing supply</li>
             </ul>
           </div>
-          <div class="investor-card-item reveal reveal-d2" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;">
+
+          <!-- Key Value Props -->
+          <div class="reveal reveal-d2"
+            style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;">
             <div style="font-size:1.4rem;margin-bottom:14px;">⚙️</div>
-            <h3 style="font-size:1.1rem;color:#fff;margin:0 0 16px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.05em;text-transform:uppercase;">Key Value Props</h3>
+            <h3
+              style="font-size:1.1rem;color:#fff;margin:0 0 16px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.05em;text-transform:uppercase;">
+              Key Value Props</h3>
             <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
-              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span style="color:#3b8ee8;flex-shrink:0;">✓</span> Compress build timelines by up to 75%</li>
-              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span style="color:#3b8ee8;flex-shrink:0;">✓</span> Reduce labor exposure significantly</li>
-              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span style="color:#3b8ee8;flex-shrink:0;">✓</span> Standardize construction outputs</li>
-              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span style="color:#3b8ee8;flex-shrink:0;">✓</span> Increase project IRR through faster delivery</li>
+              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span
+                  style="color:#3b8ee8;flex-shrink:0;">✓</span> Compress build timelines by up to 75%</li>
+              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span
+                  style="color:#3b8ee8;flex-shrink:0;">✓</span> Reduce labor exposure significantly</li>
+              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span
+                  style="color:#3b8ee8;flex-shrink:0;">✓</span> Standardize construction outputs</li>
+              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span
+                  style="color:#3b8ee8;flex-shrink:0;">✓</span> Increase project IRR through faster delivery</li>
             </ul>
           </div>
-          <div class="investor-card-item reveal reveal-d3" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;">
+
+          <!-- Financial Angle -->
+          <div class="reveal reveal-d3"
+            style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;">
             <div style="font-size:1.4rem;margin-bottom:14px;">💹</div>
-            <h3 style="font-size:1.1rem;color:#fff;margin:0 0 16px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.05em;text-transform:uppercase;">Financial Advantage</h3>
+            <h3
+              style="font-size:1.1rem;color:#fff;margin:0 0 16px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.05em;text-transform:uppercase;">
+              Financial Advantage</h3>
             <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
-              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span style="color:#3b8ee8;flex-shrink:0;">✓</span> Faster time to revenue</li>
-              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span style="color:#3b8ee8;flex-shrink:0;">✓</span> Lower construction variance</li>
-              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span style="color:#3b8ee8;flex-shrink:0;">✓</span> Improved capital efficiency</li>
-              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span style="color:#3b8ee8;flex-shrink:0;">✓</span> Scalable deployment across markets</li>
+              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span
+                  style="color:#3b8ee8;flex-shrink:0;">✓</span> Faster time to revenue</li>
+              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span
+                  style="color:#3b8ee8;flex-shrink:0;">✓</span> Lower construction variance</li>
+              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span
+                  style="color:#3b8ee8;flex-shrink:0;">✓</span> Improved capital efficiency</li>
+              <li style="color:#a8c0d8;font-size:0.93rem;display:flex;gap:8px;"><span
+                  style="color:#3b8ee8;flex-shrink:0;">✓</span> Scalable deployment across markets</li>
             </ul>
           </div>
         </div>
 
-        <div class="reveal reveal-d3" style="background:rgba(59,142,232,0.08);border:1px solid rgba(59,142,232,0.2);border-radius:16px;padding:28px;margin-bottom:40px;max-width:680px;">
-          <p style="color:#c8d8e8;font-size:1rem;margin:0;line-height:1.7;"><strong style="color:#fff;">The STEEL-ONE Solution:</strong> A scalable, repeatable building system designed for modern constraints — giving developers a predictable, high-speed path to project completion in any market condition.</p>
+        <div class="reveal reveal-d3"
+          style="background:rgba(59,142,232,0.08);border:1px solid rgba(59,142,232,0.2);border-radius:16px;padding:32px;margin-bottom:40px;max-width:680px;">
+          <p style="color:#c8d8e8;font-size:1rem;margin:0;line-height:1.7;"><strong style="color:#fff;">The STEEL-ONE
+              Solution:</strong> A scalable, repeatable building system designed for modern constraints — giving
+            developers a predictable, high-speed path to project completion in any market condition.</p>
         </div>
 
         <div class="reveal reveal-d4" style="display:flex;gap:16px;flex-wrap:wrap;">
@@ -1347,10 +1582,13 @@
       <div class="cta-inner">
         <span class="section-label reveal" style="display:inline-flex;margin-bottom:20px;">Join the Revolution</span>
         <h2 class="cta-title reveal reveal-d1">Start Your<br /><span class="text-blue">Project</span><br />Today</h2>
-        <p class="cta-sub reveal reveal-d2">Get pricing, timelines, and system details tailored to your build. Now onboarding select projects for 2026.</p>
+        <p class="cta-sub reveal reveal-d2">Get pricing, timelines, and system details tailored to your build. Now
+          onboarding select projects for 2026.</p>
         <div class="reveal reveal-d3" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-          <a href="mailto:1000pacific@gmail.com" class="btn-primary" style="font-size:1rem;padding:18px 44px;">👉 Get My Quote</a>
-          <a href="tel:3109995015" class="btn-outline" style="font-size:1rem;padding:18px 44px;">👉 Talk to a Specialist</a>
+          <a href="mailto:1000pacific@gmail.com" class="btn-primary" style="font-size:1rem;padding:18px 44px;">👉 Get My
+            Quote</a>
+          <a href="tel:3109995015" class="btn-outline" style="font-size:1rem;padding:18px 44px;">👉 Talk to a
+            Specialist</a>
         </div>
         <div class="cta-contacts reveal reveal-d4">
           <a href="mailto:1000pacific@gmail.com" class="cta-contact">✉ 1000pacific@gmail.com</a>
@@ -1359,9 +1597,9 @@
         </div>
       </div>
     </section>
-
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-logo">STEEL<span>-ONE</span></div>
     <div class="footer-info">
@@ -1370,8 +1608,19 @@
     </div>
   </footer>
 
+  <!-- SR-only helper -->
   <style>
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
   </style>
 
   <script>
@@ -1385,53 +1634,43 @@
     function closeIntro() {
       overlay.style.opacity = '0';
       backdrop.style.opacity = '0';
-      setTimeout(() => { overlay.style.display = 'none'; backdrop.style.display = 'none'; }, 400);
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        backdrop.style.display = 'none';
+      }, 400);
     }
 
     if (video) {
       video.addEventListener('timeupdate', () => {
-        if (video.duration) progress.style.width = (video.currentTime / video.duration * 100) + '%';
+        if (video.duration) {
+          progress.style.width = (video.currentTime / video.duration * 100) + '%';
+        }
       });
       video.addEventListener('ended', closeIntro);
     }
     if (skipBtn) skipBtn.addEventListener('click', closeIntro);
     if (backdrop) backdrop.addEventListener('click', closeIntro);
 
-    /* ── Hamburger nav ── */
-    const hamburger = document.getElementById('navHamburger');
-    const drawer = document.getElementById('navDrawer');
-
-    function toggleDrawer(open) {
-      hamburger.classList.toggle('open', open);
-      drawer.classList.toggle('open', open);
-      hamburger.setAttribute('aria-expanded', open);
-      document.body.style.overflow = open ? 'hidden' : '';
-    }
-
-    if (hamburger) hamburger.addEventListener('click', () => toggleDrawer(!hamburger.classList.contains('open')));
-
-    drawer.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => toggleDrawer(false));
-    });
-
-    /* ── Navbar scroll ── */
+    /* ── Navbar scroll behaviour ── */
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
 
     /* ── Scroll reveal ── */
     const revealEls = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
     }, { threshold: 0.12 });
     revealEls.forEach(el => observer.observe(el));
 
     /* ── Comparison tabs ── */
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+        document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
         btn.classList.add('active');
-        btn.setAttribute('aria-selected','true');
+        btn.setAttribute('aria-selected', 'true');
         document.getElementById(btn.dataset.tab).classList.add('active');
       });
     });
@@ -1457,6 +1696,7 @@
       const traditionalMonths = 15;
       const steelMonths = 1.5;
       const monthsSaved = traditionalMonths - steelMonths;
+
       const traditionalHours = sqft * units * 0.35;
       const steelHours = sqft * units * 0.07;
       const hoursSaved = traditionalHours - steelHours;
@@ -1542,11 +1782,15 @@
     if (chatSendBtn) chatSendBtn.addEventListener('click', handleSend);
     if (chatInput) chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleSend(); });
   </script>
-
-  <div id="patent-lightbox" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out;padding:24px;">
-    <img src="interior/1.png" alt="STEEL-ONE patent drawing enlarged" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:12px;box-shadow:0 0 60px rgba(0,0,0,0.8);" />
-    <button onclick="document.getElementById('patent-lightbox').style.display='none'" style="position:absolute;top:24px;right:32px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1;" aria-label="Close">&times;</button>
+  <!-- Patent drawing lightbox -->
+  <div id="patent-lightbox" onclick="this.style.display='none'"
+    style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out;padding:24px;">
+    <img src="interior/1.png" alt="STEEL-ONE patent drawing enlarged"
+      style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:12px;box-shadow:0 0 60px rgba(0,0,0,0.8);" />
+    <button onclick="document.getElementById('patent-lightbox').style.display='none'"
+      style="position:absolute;top:24px;right:32px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1;"
+      aria-label="Close">&times;</button>
   </div>
-
 </body>
+
 </html>

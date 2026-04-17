@@ -677,6 +677,31 @@
         padding: 60px 16px;
       }
     }
+/* ══ PORTRAIT INTRO VIDEO — FIXED ══ */
+#intro-overlay {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+#intro-video {
+  width: auto;
+  height: 85vh;
+  max-height: 85vh;
+  max-width: 90vw;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+@media (max-width: 768px) {
+  #intro-video {
+    height: auto;
+    width: 88vw;
+    max-height: 80vh;
+    border-radius: 12px;
+  }
+}
   </style>
 </head>
 
@@ -684,9 +709,9 @@
 
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <div id="intro-backdrop" role="dialog" aria-label="Introduction video" aria-modal="true"></div>
-  <div id="intro-overlay">
-    <video id="intro-video" playsinline webkit-playsinline autoplay muted aria-label="Steel-One introduction video">
+ <div id="intro-backdrop" role="dialog" aria-label="Introduction video" aria-modal="true"></div>
+  <div id="intro-overlay" style="position:fixed !important;top:0 !important;left:0 !important;width:100vw !important;height:100vh !important;z-index:99999 !important;display:flex !important;align-items:center !important;justify-content:center !important;background:rgba(0,0,0,0.9) !important;flex-direction:column !important;">
+    <video id="intro-video" playsinline webkit-playsinline autoplay muted aria-label="Steel-One introduction video" style="width:auto !important;height:82vh !important;max-width:90vw !important;max-height:82vh !important;object-fit:contain !important;border-radius:16px !important;display:block !important;">
       <source src="video/intro.mp4" type="video/mp4" />
       <source src="video/intro.webm" type="video/webm" />
     </video>

@@ -677,6 +677,63 @@
       line-height: 1.75;
       margin: 0;
     }
+
+    /* Container to hold both sides */
+    .hero-flex-layout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Ensure text stays on the left and doesn't stretch too wide */
+    .hero-text-side {
+      flex: 1;
+      text-align: left;
+      z-index: 2;
+    }
+
+    /* Position the video container on the right */
+    .hero-video-side {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      z-index: 2;
+    }
+
+    .video-container {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(59, 142, 232, 0.2);
+    }
+
+    .video-container video {
+      width: 100%;
+      display: block;
+    }
+
+    /* Responsive: Stack them on mobile so it doesn't break */
+    @media (max-width: 992px) {
+      .hero-flex-layout {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text-side {
+        text-align: center;
+      }
+
+      .hero-video-side {
+        justify-content: center;
+        width: 100%;
+      }
+    }
   </style>
 </head>
 
@@ -752,22 +809,36 @@
       <div class="hero-grid-pattern" aria-hidden="true"></div>
 
       <div class="hero-content">
-        <div class="hero-badge">
-          <span class="hero-badge-dot" aria-hidden="true"></span>
-          Utility &amp; Design Patents Pending &nbsp;·&nbsp; Built for California Rebuild &nbsp;·&nbsp; Developer &amp;
-          Builder Ready
+        <div class="hero-flex-layout">
+
+          <div class="hero-text-side">
+            <div class="hero-badge">
+              <span class="hero-badge-dot"></span>
+              Utility & Design Patents Pending · Built for California Rebuild
+            </div>
+            <h1 class="hero-title">
+              BUILD IN <span class="blue">WEEKS.</span><br />
+              NOT <span class="fire">YEARS.</span>
+            </h1>
+            <p class="hero-sub">
+              The STEEL-ONE system delivers faster, fire-resistant, and cost-controlled construction using
+              precision-engineered steel blocks.
+            </p>
+            <div class="hero-actions">
+              <a href="#cta" class="btn-primary">👉 Get My Quote</a>
+            </div>
+          </div>
+
+          <div class="hero-video-side">
+            <div class="video-container">
+              <video playsinline autoplay muted loop>
+                <source src="video/intro.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+
         </div>
-        <h1 class="hero-title">
-          BUILD IN <span class="blue">WEEKS.</span><br />
-          NOT <span class="fire">YEARS.</span>
-        </h1>
-        <p class="hero-sub">The STEEL-ONE system delivers faster, fire-resistant, and cost-controlled construction using
-          precision-engineered steel blocks — installed by just two workers.</p>
-        <div class="hero-actions">
-          <a href="#cta" class="btn-primary">👉 Get My Project Quote</a>
-          <a href="#comparison" class="btn-outline">👉 See How It Works</a>
-        </div>
-      </div>
+      </div> 
 
       <div class="hero-stats" aria-label="Key statistics">
         <div class="stat">
@@ -1485,7 +1556,7 @@
         </div>
       </div>
     </section>
- 
+
     <!-- INVESTOR / DEVELOPER SECTION -->
     <section id="investor" style="background:#0a1628;padding:100px 24px;position:relative;overflow:hidden;">
       <div

@@ -969,7 +969,6 @@
         flex-direction: column;
         align-items: center;
         gap: 24px;
-        /* Slightly tighter gap for mobile */
       }
 
       .media-row {
@@ -980,11 +979,9 @@
         align-items: center;
       }
 
-      /* Video scaling for mobile */
+      /* Video scaling - 16/9 ratio */
       .video-wrapper {
         width: 100%;
-        /* Removing fixed aspect-ratio allows it to expand more naturally if needed, 
-       but 16/9 is standard. Increase width to 100% of the container. */
         aspect-ratio: 16 / 9;
         background: #000;
         border-radius: 12px;
@@ -993,11 +990,30 @@
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
       }
 
-      /* Image scaling for mobile - slightly smaller so it doesn't compete */
+      /* Updated Image scaling to match Video exactly (Same Size & Configuration) */
       .image-wrapper {
-        width: 85%;
-        /* Scaled down slightly on mobile to emphasize video */
-        max-width: 400px;
+        width: 100%;
+        /* Changed from 85% to 100% to match video width */
+        aspect-ratio: 16 / 9;
+        /* Added to ensure the "screen" size is identical */
+        background: #000;
+        /* Added background to match video container */
+        border-radius: 12px;
+        /* Matches video radius */
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Matches video border */
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        /* Matches video shadow */
+      }
+
+      /* Ensures the image fills the 16:9 container properly */
+      .image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* This makes the image fill the container like the video */
+        display: block;
       }
 
       /* Laptop/Desktop Layout */
@@ -1012,18 +1028,18 @@
           justify-content: center;
         }
 
+        /* Set both to equal flex values for identical side-by-side configuration */
         .video-wrapper {
-          flex: 1.4;
-          /* Video remains the dominant element */
+          flex: 1;
         }
 
         .image-wrapper {
-          flex: 0.6;
-          width: 100%;
+          flex: 1;
           margin-top: 0 !important;
         }
       }
     </style>
+
     <!-- PATENT CALLOUT -->
     <div style="background:#07111f; padding:40px 20px;">
       <div
@@ -1043,28 +1059,27 @@
           <p style="font-family: sans-serif; font-size:0.95rem; color:#7eb3e0; line-height:1.5; margin:0 0 16px 0;">
             Precision-engineered interlocking steel block — the core of the STEEL-ONE construction system.
           </p>
-          <!-- Specifications (Fixed the floating text) -->
           <div
             style="font-family: sans-serif; font-size:0.8rem; color:#5c8db6; letter-spacing: 0.05em; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px;">
             The metal block is available in a range of sizes and exterior finishes and includes integrated insulation
             for thermal and acoustic performance, along with heat-resistant properties that reduce heat transfer from
-            solar exposure.
-          </div>
+            solar exposure. </div>
         </div>
 
-        <!-- Video Container -->
-        <div
-          style="width:100%; max-width:800px; aspect-ratio:16/9; background:#000; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
-          <video playsinline autoplay muted loop style="width:100%; height:100%; display:block; object-fit:cover;"
-            title="STEEL-ONE system video presentation">
-            <source src="video/vid1.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <!-- Image Wrapper (Subordinate on Mobile) -->
-        <div class="image-wrapper">
-          <img src="img/blocks.png" alt="Steel-One Interlocking Blocks"
-            style="width:100%; height:auto; display:block; filter: drop-shadow(0 0 15px rgba(59, 142, 232, 0.15));">
+        <!-- Wrap both in media-row for side-by-side desktop support -->
+        <div class="media-row">
+          <!-- Video Container -->
+          <div class="video-wrapper">
+            <video playsinline autoplay muted loop style="width:100%; height:100%; display:block; object-fit:cover;"
+              title="STEEL-ONE system video presentation">
+              <source src="video/vid1.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- Image Wrapper (Now matches video configuration) -->
+          <div class="image-wrapper">
+            <img src="img/blocks.png" alt="Steel-One Interlocking Blocks">
+          </div>
         </div>
 
       </div>

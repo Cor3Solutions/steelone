@@ -718,7 +718,10 @@
       display: block;
     }
 
-    /* Responsive: Stack them on mobile so it doesn't break */
+    /* Desktop: hide the mobile-only video slot */
+    .hero-mobile-video { display: none; }
+
+    /* Responsive: Stack on mobile */
     @media (max-width: 992px) {
       .hero-flex-layout {
         flex-direction: column;
@@ -729,9 +732,53 @@
         text-align: center;
       }
 
-      .hero-video-side {
-        justify-content: center;
+      /* Badge: bigger, readable, full-width on phones */
+      .hero-badge {
+        font-size: 1.1rem !important;
+        letter-spacing: 0.06em !important;
+        display: flex !important;
         width: 100%;
+        justify-content: center;
+        text-align: center;
+        padding: 14px 22px !important;
+        line-height: 1.5;
+        box-sizing: border-box;
+      }
+
+      /* Show inline video after badge on mobile — full screen */
+      .hero-mobile-video {
+        display: block;
+        /* break out of the container's 20px side padding */
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        /* fill almost the full viewport — cinematic */
+        height: calc(100vh - 80px);
+        height: calc(100svh - 80px);
+        margin-top: 18px;
+        margin-bottom: 40px;
+      }
+
+      .hero-mobile-video .video-container {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+      }
+
+      .hero-mobile-video .video-container video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Hide the desktop video column on mobile */
+      .hero-video-side {
+        display: none;
       }
     }
   </style>
@@ -812,7 +859,15 @@
           <div class="hero-text-side">
             <div class="hero-badge">
               <span class="hero-badge-dot"></span>
-              Utility & Design Patents Pending
+            STEEL ONE™ <br> The Next Generation Structural Building System
+            </div>
+            <!-- mobile-only video: appears right after badge on phones -->
+            <div class="hero-mobile-video" aria-hidden="true">
+              <div class="video-container">
+                <video playsinline autoplay muted loop>
+                  <source src="video/intro.mp4" type="video/mp4" />
+                </video>
+              </div>
             </div>
             <h1 class="hero-title">
               BUILD IN <span class="blue">WEEKS.</span><br />

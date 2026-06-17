@@ -612,7 +612,7 @@
 
     @media (max-width: 640px) {
       section { padding: 72px 5%; }
-      .hero-content { padding: 110px 5% 48px; }
+      .hero-content { padding: 52px 5% 48px; }
       .hero-stats { grid-template-columns: 1fr 1fr; }
       .stat { padding: 18px 12px; }
       .stat-num { font-size: 2rem; }

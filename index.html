@@ -732,17 +732,28 @@
         text-align: center;
       }
 
-      /* Badge: bigger, readable, full-width on phones */
+      /* Badge: full-width on phones, aligns with the video below */
       .hero-badge {
-        font-size: 1.1rem !important;
-        letter-spacing: 0.06em !important;
+        font-size: 2.4vw !important;
+        letter-spacing: 0.03em !important;
         display: flex !important;
-        width: 100%;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        gap: 2px;
+        /* break out of container padding to match video width */
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
         justify-content: center;
         text-align: center;
-        padding: 14px 22px !important;
+        padding: 14px 20px !important;
         line-height: 1.5;
         box-sizing: border-box;
+        border-radius: 0 !important;
+        margin-bottom: 0 !important;
       }
 
       /* Show inline video after badge on mobile — full screen */
@@ -779,6 +790,17 @@
       /* Hide the desktop video column on mobile */
       .hero-video-side {
         display: none;
+      }
+
+      .badge-line1 {
+        font-size: 5.5vw;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+
+      .badge-line2 {
+        font-size: 2.4vw;
+        letter-spacing: 0.03em;
       }
     }
   </style>
@@ -859,7 +881,7 @@
           <div class="hero-text-side">
             <div class="hero-badge">
               <span class="hero-badge-dot"></span>
-            STEEL ONE™ <br> The Next Generation Structural Building System
+            <span class="badge-line1">STEEL ONE™</span><br><span class="badge-line2">The Next Generation Structural Building System</span>
             </div>
             <!-- mobile-only video: appears right after badge on phones -->
             <div class="hero-mobile-video" aria-hidden="true">

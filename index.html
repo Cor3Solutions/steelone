@@ -723,8 +723,92 @@
     .badge-logo-img { display: none; }
     .badge-main-row { display: inline; }
 
+    /* ── Hamburger button ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 1100;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── Mobile slide-in menu ── */
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; right: 0;
+      width: min(300px, 80vw);
+      height: 100vh;
+      background: #0d1117;
+      border-left: 1px solid rgba(59,142,232,0.2);
+      z-index: 1050;
+      padding: 90px 32px 40px;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+    }
+    #mobile-menu.open { transform: translateX(0); }
+    #mobile-menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .mob-link {
+      display: block;
+      padding: 14px 0;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: color 0.2s;
+    }
+    .mob-link:hover { color: #2196F3; }
+    .mob-cta {
+      margin-top: 16px;
+      background: #2196F3;
+      color: #fff !important;
+      border-radius: 10px;
+      padding: 16px 24px;
+      text-align: center;
+      border-bottom: none;
+    }
+    .mob-cta:hover { background: #1565c0; }
+
+    #mobile-menu-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1040;
+      backdrop-filter: blur(4px);
+    }
+
+    @media (max-width: 992px) {
+      .hamburger { display: flex; }
+    }
+
     /* Responsive: Stack on mobile */
     @media (max-width: 992px) {
+      #hero { justify-content: flex-start; padding: 0; }
+      .hero-content { padding-top: 68px; }
+
       .hero-flex-layout {
         flex-direction: column;
         text-align: center;
@@ -825,20 +909,6 @@
   <!-- Skip link for accessibility -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Video popup backdrop -->
-  <div id="intro-backdrop" role="dialog" aria-label="Introduction video" aria-modal="true"></div>
-  <div id="intro-overlay">
-    <video id="intro-video" playsinline webkit-playsinline autoplay muted aria-label="Steel-One introduction video">
-      <source src="video/intro1.mp4" type="video/mp4" />
-      <source src="video/intro.webm" type="video/webm" />
-    </video>
-    <button class="intro-skip" id="introSkip" aria-label="Close introduction video" title="Close">&#x2715;</button>
-    <div class="intro-bar">
-      <span class="intro-bar-text">STEEL-ONE &nbsp;·&nbsp; Concord Pacific, Corp</span>
-      <span class="intro-ad-tag">AD</span>
-    </div>
-    <div class="intro-progress" id="introProgress" role="progressbar" aria-label="Video progress"></div>
-  </div>
 
   <!-- Mobile CTA Bar -->
   <div class="mobile-cta-bar" role="navigation" aria-label="Quick contact">
@@ -878,7 +948,23 @@
       <li><a href="#market">Market</a></li>
     </ul>
     <a href="#cta" class="nav-cta">Get My Quote</a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" aria-hidden="true">
+    <ul>
+      <li><a href="#comparison" class="mob-link">System</a></li>
+      <li><a href="#fire" class="mob-link">Fire Safety</a></li>
+      <li><a href="#calculator" class="mob-link">ROI Calculator</a></li>
+      <li><a href="#market" class="mob-link">Market</a></li>
+      <li><a href="#why-better" class="mob-link">Why Steel?</a></li>
+      <li><a href="#cta" class="mob-link mob-cta">Contact Us Today</a></li>
+    </ul>
+  </div>
+  <div id="mobile-menu-backdrop"></div>
 
   <!-- ─── HERO ─── -->
   <main id="main-content">
@@ -2425,37 +2511,44 @@
   </style>
 
   <script>
-    /* ── Intro video overlay ── */
-    const backdrop = document.getElementById('intro-backdrop');
-    const overlay = document.getElementById('intro-overlay');
-    const video = document.getElementById('intro-video');
-    const skipBtn = document.getElementById('introSkip');
-    const progress = document.getElementById('introProgress');
-
-    function closeIntro() {
-      overlay.style.opacity = '0';
-      backdrop.style.opacity = '0';
-      setTimeout(() => {
-        overlay.style.display = 'none';
-        backdrop.style.display = 'none';
-      }, 400);
-    }
-
-    if (video) {
-      video.addEventListener('timeupdate', () => {
-        if (video.duration) {
-          progress.style.width = (video.currentTime / video.duration * 100) + '%';
-        }
-      });
-      video.addEventListener('ended', closeIntro);
-    }
-    if (skipBtn) skipBtn.addEventListener('click', closeIntro);
-    if (backdrop) backdrop.addEventListener('click', closeIntro);
-
     /* ── Navbar scroll behaviour ── */
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* ── Hamburger menu ── */
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu   = document.getElementById('mobile-menu');
+    const menuBackdrop = document.getElementById('mobile-menu-backdrop');
+
+    function openMenu() {
+      mobileMenu.style.display = 'block';
+      menuBackdrop.style.display = 'block';
+      requestAnimationFrame(() => mobileMenu.classList.add('open'));
+      hamburgerBtn.classList.add('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'true');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      hamburgerBtn.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        mobileMenu.style.display = 'none';
+        menuBackdrop.style.display = 'none';
+      }, 350);
+    }
+
+    hamburgerBtn.addEventListener('click', () => {
+      mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    menuBackdrop.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mob-link').forEach(link => {
+      link.addEventListener('click', closeMenu);
     });
 
     /* ── Scroll reveal ── */

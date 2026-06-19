@@ -1,31 +1,3 @@
-/* ─── VIDEO POPUP ─── */
-const introOverlay = document.getElementById('intro-overlay');
-const introBackdrop = document.getElementById('intro-backdrop');
-const introVideo = document.getElementById('intro-video');
-const introProgress = document.getElementById('introProgress');
-const introSkip = document.getElementById('introSkip');
-let introDone = false;
-
-function dismissIntro() {
-  if (introDone) return; introDone = true;
-  introVideo.pause();
-  introOverlay.classList.add('dismissing');
-  introBackdrop.classList.add('dismissing');
-  introOverlay.addEventListener('animationend', () => {
-    introOverlay.style.display = 'none'; introBackdrop.style.display = 'none';
-  }, { once: true });
-}
-introVideo.addEventListener('timeupdate', () => {
-  if (introVideo.duration) introProgress.style.width = (introVideo.currentTime / introVideo.duration * 100) + '%';
-});
-introVideo.addEventListener('ended', dismissIntro, { once: true });
-introVideo.addEventListener('error', () => setTimeout(dismissIntro, 4000), { once: true });
-const fbTimer = setTimeout(dismissIntro, 8000);
-introVideo.addEventListener('canplay', () => clearTimeout(fbTimer), { once: true });
-introSkip.addEventListener('click', e => { e.stopPropagation(); dismissIntro(); });
-introSkip.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); dismissIntro(); } });
-introBackdrop.addEventListener('click', dismissIntro);
-
 /* ─── NAV SCROLL ─── */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60), { passive: true });

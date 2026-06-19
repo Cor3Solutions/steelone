@@ -678,7 +678,7 @@
       margin: 0;
     }
 
-    /* Container to hold both sides */
+    /* Desktop hero: two-column (text left, video right) */
     .hero-flex-layout {
       display: flex;
       align-items: center;
@@ -689,14 +689,12 @@
       padding: 0 20px;
     }
 
-    /* Ensure text stays on the left and doesn't stretch too wide */
     .hero-text-side {
       flex: 1;
       text-align: left;
       z-index: 2;
     }
 
-    /* Position the video container on the right */
     .hero-video-side {
       flex: 1;
       display: flex;
@@ -718,8 +716,22 @@
       display: block;
     }
 
-    /* Desktop: hide the mobile-only video slot and the in-badge logo */
+    /* Tagline below the badge pill */
+    .hero-tagline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 0 0 32px;
+      line-height: 1.15;
+      animation: slideUp 0.7s 0.3s both;
+    }
+
+    /* Desktop: video is in right column — hide the mobile inline slot */
     .hero-mobile-video { display: none; }
+    .hero-center-video { display: none; }
     .badge-logo-img { display: none; }
     .badge-main-row { display: inline; }
 
@@ -818,24 +830,23 @@
         text-align: center;
       }
 
-      /* Badge: left-aligned pill at the top on phones */
+      /* Badge pill on mobile */
       .hero-badge {
         display: inline-flex !important;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        gap: 4px;
-        /* reset any centering / 100vw tricks */
+        gap: 8px;
         width: auto;
         position: static;
         left: auto;
         margin-left: auto !important;
         margin-right: auto !important;
         text-align: center;
-        padding: 12px 18px !important;
+        padding: 10px 18px !important;
         line-height: 1.4;
         box-sizing: border-box;
-        border-radius: 14px !important;
-        margin-bottom: 0 !important;
+        border-radius: 30px !important;
+        margin-bottom: 12px !important;
         white-space: nowrap;
       }
 
@@ -854,41 +865,9 @@
         gap: 8px;
       }
 
-      /* Show inline video after badge on mobile — full screen */
-      .hero-mobile-video {
-        display: block;
-        /* break out of the container's 20px side padding */
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        /* fill almost the full viewport — cinematic */
-        height: calc(100vh - 80px);
-        height: calc(100svh - 80px);
-        margin-top: 18px;
-        margin-bottom: 40px;
-      }
-
-      .hero-mobile-video .video-container {
-        width: 100%;
-        height: 100%;
-        max-width: none;
-        border-radius: 0;
-        border: none;
-        box-shadow: none;
-      }
-
-      .hero-mobile-video .video-container video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      /* Hide the desktop video column on mobile */
-      .hero-video-side {
-        display: none;
-      }
+      /* Old mobile-only video slot is no longer used */
+      .hero-mobile-video { display: none; }
+      .hero-video-side { display: none; }
 
       .badge-line1 {
         font-size: 5.5vw;
@@ -896,9 +875,30 @@
         letter-spacing: 0.05em;
       }
 
-      .badge-line2 {
-        font-size: 2.4vw;
-        letter-spacing: 0.03em;
+      .hero-tagline {
+        font-size: clamp(1rem, 4.5vw, 1.6rem);
+        margin-bottom: 16px;
+      }
+
+      /* Show video below hero-sub on mobile */
+      .hero-center-video {
+        display: block;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        margin-top: 28px;
+        margin-bottom: 36px;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        max-width: none;
+      }
+
+      .hero-center-video video {
+        height: auto;
+        object-fit: cover;
       }
     }
   </style>
@@ -985,16 +985,8 @@
                 <img src="img/logo.png" class="badge-logo-img" alt="" aria-hidden="true" />
                 <span class="badge-line1">STEEL ONE™</span>
               </span>
-              <span class="badge-line2">The Next Generation Structural Building System</span>
             </div>
-            <!-- mobile-only video: appears right after badge on phones -->
-            <div class="hero-mobile-video" aria-hidden="true">
-              <div class="video-container">
-                <video playsinline autoplay muted loop>
-                  <source src="video/intro.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
+            <p class="hero-tagline">The Next Generation Structural Building System</p>
             <h1 class="hero-title">
               BUILD IN <span class="blue">WEEKS.</span><br />
               NOT <span class="fire">YEARS.</span>
@@ -1003,6 +995,12 @@
               The STEEL-ONE system delivers faster, fire-resistant, and cost-controlled construction using
               precision-engineered steel blocks.
             </p>
+            <!-- Desktop video: appears between sub and CTA on desktop -->
+            <div class="hero-center-video" aria-hidden="true">
+              <video playsinline autoplay muted loop>
+                <source src="video/intro.mp4" type="video/mp4" />
+              </video>
+            </div>
             <div class="hero-actions">
               <a href="#cta" class="btn-primary">👉 Get My Quote</a>
             </div>
@@ -1867,63 +1865,7 @@
         </div>
       </div>
     </section>
-
-    <!-- ── NEW: REAL-WORLD PRECEDENT ── -->
-    <section id="precedent" aria-label="Real-world precedent">
-      <div class="precedent-inner">
-        <span class="section-label reveal" style="display:inline-flex;margin-bottom:16px;">Real-World Precedent</span>
-        <h2 class="section-title reveal reveal-d1">Global Proof of<br /><span class="text-blue">Metal Modular
-            Construction</span></h2>
-        <div class="precedent-layout">
-          <div class="precedent-text reveal reveal-d2">
-            <p>Steel-based modular construction isn't a concept — it's already been proven on the world stage.
-              Micro-homes constructed from steel box units in Japan by architect Yasuhiro demonstrate the global
-              viability of metal modular construction.</p>
-            <p>The <strong style="color:#fff;">"Cell Brick"</strong> project shows that precision-engineered steel units
-              can be assembled into full living spaces — rapidly, repeatably, and beautifully. STEEL-ONE takes this
-              proven concept and scales it for the American residential market.</p>
-            <p>What works for micro-housing in Japan works for full-scale homes in California — with the added
-              advantages of fire resistance, earthquake performance, and speed that the US market demands right now.</p>
-            <a href="#cta" class="btn-primary"
-              style="display:inline-flex;margin-top:24px;font-size:0.9rem;padding:14px 28px;">👉 See the STEEL-ONE
-              System</a>
-          </div>
-          <div class="reveal reveal-d3">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-              <span style="font-size:1.4rem;">🇯🇵</span>
-              <div>
-                <div
-                  style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.06em;">
-                  "Cell Brick" — Japan</div>
-                <div style="font-size:0.8rem;color:#7eb3e0;">Architect Yasuhiro Yamashita</div>
-              </div>
-              <span class="precedent-proof-tag" style="margin-left:auto;">Global Proof</span>
-            </div>
-            <!-- 2x2 photo grid -->
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
-              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/13.png"
-                  alt="Cell Brick exterior Japan" style="width:100%;height:100%;object-fit:cover;display:block;" />
-              </div>
-              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/15.png"
-                  alt="Cell Brick interior white grid" style="width:100%;height:100%;object-fit:cover;display:block;" />
-              </div>
-              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/16.png"
-                  alt="Cell Brick interior blue grid" style="width:100%;height:100%;object-fit:cover;display:block;" />
-              </div>
-              <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3;"><img src="interior/14.png"
-                  alt="Cell Brick interior living space"
-                  style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            </div>
-            <div
-              style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;text-align:center;">
-              <div style="color:#c8d8e8;font-size:0.9rem;line-height:1.6;">Metal modular construction has already proven
-                viable across cultures, climates, and markets — STEEL-ONE brings it home.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+ 
     <!-- FIRE -->
     <section id="fire" aria-label="Fire safety">
       <div class="fire-bg" aria-hidden="true">

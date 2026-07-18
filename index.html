@@ -1262,26 +1262,10 @@
           </div>
         </div>
 
-        <!-- Embedded YouTube Video Player (Mobile Optimized Autoplay & Cropped Info) -->
+       <!-- Embedded YouTube Video Player (Standard Play, Muted Init Removed & Cropped Info) -->
         <div class="video-wrapper" style="margin-top: 24px; position: relative; overflow: hidden;">
-          <iframe id="patent-yt-player" width="100%" height="116%" src="https://www.youtube.com/embed/XBVh1wwVcvU?enablejsapi=1&autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display: block; position: absolute; top: -8%; left: 0;"></iframe>
+          <iframe width="100%" height="116%" src="https://www.youtube.com/embed/XBVh1wwVcvU?controls=0&rel=0&modestbranding=1&playsinline=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display: block; position: absolute; top: -8%; left: 0;"></iframe>
         </div>
-
-        <!-- Cross-Platform Mobile Autoplay Sound Trigger Script -->
-        <script>
-          const iframe = document.getElementById('patent-yt-player');
-          
-          function triggerMobileAudio() {
-            // Sends direct postMessage hooks to the YouTube iframe to instantly toggle audio active
-            iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
-            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-          }
-
-          // Triggers as soon as the user touches, clicks, or scrolls the mobile view
-          window.addEventListener('click', triggerMobileAudio, { once: true });
-          window.addEventListener('touchstart', triggerMobileAudio, { once: true });
-          window.addEventListener('scroll', triggerMobileAudio, { once: true });
-        </script>
 
       </div>
     </div>
